@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,15 +16,23 @@ enum Role {
   STAFF
 }
 
+enum UserStatus {
+  ACTIVE
+  ON_LEAVE
+  INACTIVE
+}
+
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String     @id @default(cuid())
+  email     String     @unique
   name      String?
   password  String
-  role      Role     @default(TECHNICIAN)
+  role      Role       @default(TECHNICIAN)
+  status    UserStatus @default(ACTIVE)
+  rating    Float      @default(5.0)
   image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   tickets   ServiceTicket[] @relation("TechnicianTickets")
 }
@@ -153,6 +158,7 @@ model Transaction {
   customerId    String?
   customer      Customer?       @relation(fields: [customerId], references: [id])
   description   String?
+  receiptUrl    String?
   cashDrawerId  String
   cashDrawer    CashDrawer      @relation(fields: [cashDrawerId], references: [id])
   createdAt     DateTime        @default(now())
@@ -204,4 +210,65 @@ model Debt {
   status     String   @default("UNPAID")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+// --- NEW MODELS FOR ENHANCED FEATURES ---
+
+enum CampaignStatus {
+  DRAFT
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model Campaign {
+  id          String         @id @default(cuid())
+  name        String
+  content     String
+  audience    String // e.g., "ALL", "VIP", "DEBTORS"
+  status      CampaignStatus @default(DRAFT)
+  deliveryRate Float?
+  openRate    Float?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model MessageTemplate {
+  id        String   @id @default(cuid())
+  name      String   @unique // e.g., "SERVICE_READY"
+  content   String
+  type      String   // e.g., "WHATSAPP", "SMS"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AutomationType {
+  LOW_STOCK
+  SERVICE_READY
+  LOW_MARGIN
+  BIRTHDAY
+}
+
+model AutomationRule {
+  id            String         @id @default(cuid())
+  type          AutomationType
+  name          String
+  threshold     Float?
+  primaryChannel String        @default("WHATSAPP")
+  isEnabled     Boolean        @default(true)
+  recipientRole Role           @default(MANAGER)
+  templateId    String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model SystemSettings {
+  id                 String  @id @default("default")
+  whatsappApiKey     String?
+  whatsappWebhookUrl String?
+  smsApiKey          String?
+  smsSenderId        String? @default("TECHATEL")
+  globalVatRate      Float   @default(20.0)
+  currencySymbol     String  @default("₺")
+  updatedAt          DateTime @updatedAt
 }
