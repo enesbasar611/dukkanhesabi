@@ -1,0 +1,207 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  TECHNICIAN
+  STAFF
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      Role     @default(TECHNICIAN)
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tickets   ServiceTicket[] @relation("TechnicianTickets")
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String   @unique
+  email     String?
+  address   String?
+  isVip     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tickets      ServiceTicket[]
+  transactions Transaction[]
+  debts        Debt[]
+}
+
+enum TicketStatus {
+  NEW
+  PENDING_APPROVAL
+  REPAIRING
+  READY
+  DELIVERED
+  CANCELLED
+}
+
+model ServiceTicket {
+  id             String       @id @default(cuid())
+  displayId      String       @unique // e.g., TS-2024-001
+  customerId     String
+  customer       Customer     @relation(fields: [customerId], references: [id])
+  deviceBrand    String
+  deviceModel    String
+  imei           String?
+  cosmeticNotes  String?
+  problemDesc    String
+  accessories    String[]
+  estimatedPrice Float?
+  downPayment    Float        @default(0)
+  status         TicketStatus @default(NEW)
+  technicianId   String?
+  technician     User?        @relation("TechnicianTickets", fields: [technicianId], references: [id])
+  readyDate      DateTime?
+  completedAt    DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  logs  ServiceLog[]
+  parts TicketPart[]
+}
+
+model ServiceLog {
+  id        String        @id @default(cuid())
+  ticketId  String
+  ticket    ServiceTicket @relation(fields: [ticketId], references: [id])
+  content   String
+  isPublic  Boolean       @default(false)
+  createdAt DateTime      @default(now())
+}
+
+model TicketPart {
+  id        String        @id @default(cuid())
+  ticketId  String
+  ticket    ServiceTicket @relation(fields: [ticketId], references: [id])
+  productId String
+  product   Product       @relation(fields: [productId], references: [id])
+  quantity  Int           @default(1)
+  price     Float
+}
+
+enum ProductCategory {
+  SCREEN
+  BATTERY
+  ACCESSORY
+  MOTHERBOARD
+  DEVICE_NEW
+  DEVICE_2ND_HAND
+  OTHER
+}
+
+model Product {
+  id            String          @id @default(cuid())
+  name          String
+  barcode       String?         @unique
+  category      ProductCategory
+  brand         String?
+  compatibleWith String?
+  shelfLocation String?
+  stock         Int             @default(0)
+  minStock      Int             @default(5)
+  purchasePrice Float
+  salePrice     Float
+  isUsed        Boolean         @default(false)
+  imei          String?         @unique // For specific 2nd hand units
+  warrantyDays  Int?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  ticketParts TicketPart[]
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  TRANSFER
+  WALLET
+  SPLIT
+}
+
+model Transaction {
+  id            String          @id @default(cuid())
+  type          TransactionType
+  category      String
+  amount        Float
+  method        PaymentMethod
+  customerId    String?
+  customer      Customer?       @relation(fields: [customerId], references: [id])
+  description   String?
+  cashDrawerId  String
+  cashDrawer    CashDrawer      @relation(fields: [cashDrawerId], references: [id])
+  createdAt     DateTime        @default(now())
+}
+
+model CashDrawer {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  balance   Float    @default(0)
+  isMain    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  transactions Transaction[]
+}
+
+model Supplier {
+  id           String   @id @default(cuid())
+  name         String
+  category     String?
+  debt         Float    @default(0)
+  trustScore   Int      @default(100)
+  contactEmail String?
+  contactPhone String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  orders SupplierOrder[]
+}
+
+model SupplierOrder {
+  id         String   @id @default(cuid())
+  supplierId String
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+  orderNo    String   @unique
+  itemDesc   String
+  amount     Float
+  status     String   @default("PENDING")
+  paid       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Debt {
+  id         String   @id @default(cuid())
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  amount     Float
+  dueDate    DateTime?
+  status     String   @default("UNPAID")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}

@@ -1,0 +1,165 @@
+
+> my-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env
+✓ Ready in 558ms
+
+○ Compiling /dashboard ...
+⨯ Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at ignore-listed frames {
+  digest: '667446885@E231'
+}
+ GET /dashboard 500 in 5.1s (next.js: 4.3s, application-code: 838ms)
+[browser] Uncaught Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at TopNavBar (src/components/layout/TopNavBar.tsx:40:13)
+    at RootLayout (src/app/layout.tsx:24:11)
+  38 |           </div>
+  39 |           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-8...
+> 40 |             <Image
+     |             ^
+  41 |               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZ...
+  42 |               alt="User Avatar"
+  43 |               fill
+⨯ Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at ignore-listed frames {
+  digest: '667446885@E231'
+}
+ GET /technical-service 500 in 939ms (next.js: 711ms, application-code: 227ms)
+[browser] Uncaught Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at TopNavBar (src/components/layout/TopNavBar.tsx:40:13)
+    at RootLayout (src/app/layout.tsx:24:11)
+  38 |           </div>
+  39 |           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-8...
+> 40 |             <Image
+     |             ^
+  41 |               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZ...
+  42 |               alt="User Avatar"
+  43 |               fill
+⨯ Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at ignore-listed frames {
+  digest: '667446885@E231'
+}
+ GET /technical-service/new 500 in 703ms (next.js: 595ms, application-code: 108ms)
+[browser] Uncaught Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at TopNavBar (src/components/layout/TopNavBar.tsx:40:13)
+    at RootLayout (src/app/layout.tsx:24:11)
+  38 |           </div>
+  39 |           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-8...
+> 40 |             <Image
+     |             ^
+  41 |               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZ...
+  42 |               alt="User Avatar"
+  43 |               fill
+⨯ Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at ignore-listed frames {
+  digest: '667446885@E231'
+}
+ GET /inventory 500 in 659ms (next.js: 489ms, application-code: 170ms)
+[browser] Uncaught Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at TopNavBar (src/components/layout/TopNavBar.tsx:40:13)
+    at RootLayout (src/app/layout.tsx:24:11)
+  38 |           </div>
+  39 |           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-8...
+> 40 |             <Image
+     |             ^
+  41 |               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZ...
+  42 |               alt="User Avatar"
+  43 |               fill
+⨯ Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at ignore-listed frames {
+  digest: '667446885@E231'
+}
+ GET /pos 500 in 620ms (next.js: 516ms, application-code: 104ms)
+[browser] Uncaught Error: Invalid src prop (https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I) on `next/image`, hostname "lh3.googleusercontent.com" is not configured under images in your `next.config.js`
+See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+    at Array.map (<anonymous>)
+    at TopNavBar (src/components/layout/TopNavBar.tsx:40:13)
+    at RootLayout (src/app/layout.tsx:24:11)
+  38 |           </div>
+  39 |           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-8...
+> 40 |             <Image
+     |             ^
+  41 |               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZ...
+  42 |               alt="User Avatar"
+  43 |               fill
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.2.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env
+✓ Ready in 390ms
+
+ GET /dashboard 200 in 820ms (next.js: 238ms, application-code: 582ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <DevRootHTTPAccessFallbackBoundary>
+      <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+        <HTTPAccessFallbackErrorBoundary pathname="/dashboard" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <Head>
+              <__next_root_layout_boundary__>
+                <SegmentViewNode type="layout" pagePath="src/layout...">
+                  <SegmentTrieNode>
+                  <link>
+                  <script>
+                  <script>
+                  <script>
+                  <RootLayout>
+                    <html lang="en" className="light">
+                      <body className="inter_5972...">
+                        <SideNavBar>
+                        <main className="ml-64 min-...">
+                          <TopNavBar>
+                            <header className="sticky top...">
+                              <div className="flex items...">
+                                <div className="relative w...">
+                                  <Search>
+                                  <input
+                                    className="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none round..."
+                                    placeholder="Search imei, customer, or product..."
+                                    type="text"
+-                                   style={{caret-color:"transparent"}}
+                                  >
+                              ...
+                          ...
+              ...
+
+ GET /technical-service 200 in 479ms (next.js: 90ms, application-code: 389ms)
+[browser] Image with src "https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
+ GET /technical-service/new 200 in 116ms (next.js: 25ms, application-code: 91ms)
+[browser] Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>.
+[browser] Image with src "https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /inventory 200 in 281ms (next.js: 32ms, application-code: 249ms)
+[browser] Image with src "https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+ GET /pos 200 in 108ms (next.js: 23ms, application-code: 85ms)
+[browser] Image with src "https://lh3.googleusercontent.com/aida-public/AB6AXuATyvXC6p8jisb4XI9vZzH0S5tXQO6i3322maqriJb605j6RnzamatwvUDAjOEQJ7vB-4ZbXLaqfxO0OwDwH8x7Vi1l2Ep44cXSfVFkgq4Wid_xV5IR4oecbNipbaWxMBdj5qdku6hZLYfKyaRL_nBNHgQJmJ1I9vj7fvAO_MoWdvkQGpj7IcqiuN0-tdI__AJBLBXxME7OK7dxokrBPM7Kl5Qn5Ex7Qfsz8CzT-zN6Q06GJlQJ6raehQQ9nkIb4EZj4GcaCBvia_I" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
