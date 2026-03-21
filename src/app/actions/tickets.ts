@@ -11,11 +11,11 @@ export async function updateTicketStatus(id: string, status: TicketStatus) {
       data: { status },
     });
 
-    // Log the change
+    // Durum değişikliğini kaydet
     await prisma.serviceLog.create({
       data: {
         ticketId: id,
-        content: `Status updated to ${status.replace('_', ' ')}`,
+        content: `Durum güncellendi: ${status.replace('_', ' ')}`,
       }
     });
 
@@ -23,7 +23,7 @@ export async function updateTicketStatus(id: string, status: TicketStatus) {
     revalidatePath("/technical-service");
     return { success: true };
   } catch {
-    return { success: false, error: "Failed to update status" };
+    return { success: false, error: "Durum güncellenemedi" };
   }
 }
 
@@ -39,6 +39,6 @@ export async function addTicketNote(id: string, content: string, isPublic: boole
     revalidatePath(`/technical-service/${id}`);
     return { success: true };
   } catch {
-    return { success: false, error: "Failed to add note" };
+    return { success: false, error: "Not eklenemedi" };
   }
 }

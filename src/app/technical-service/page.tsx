@@ -11,8 +11,8 @@ const tickets = [
     device: "iPhone 13 Pro Max",
     problem: "Ekran Değişimi",
     technician: "Ahmet Y.",
-    status: "REPAIRING",
-    amount: "4.250 TL",
+    status: "ONARIMDA",
+    amount: "4.250 ₺",
     paid: false,
   },
   {
@@ -23,8 +23,8 @@ const tickets = [
     device: "Samsung Galaxy S22",
     problem: "Batarya Değişimi",
     technician: "Merve K.",
-    status: "READY",
-    amount: "1.800 TL",
+    status: "HAZIR",
+    amount: "1.800 ₺",
     paid: true,
   },
   {
@@ -35,18 +35,18 @@ const tickets = [
     device: "iPad Air 5",
     problem: "Şarj Entegresi",
     technician: null,
-    status: "NEW",
-    amount: "2.500 TL",
+    status: "YENİ",
+    amount: "2.500 ₺",
     paid: "partial",
   },
 ];
 
 const statusStyles = {
-  NEW: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  REPAIRING: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
-  READY: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
-  DELIVERED: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400",
-  CANCELLED: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
+  YENİ: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  ONARIMDA: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  HAZIR: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  TESLİM: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400",
+  İPTAL: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
 };
 
 export default function TechnicalServiceListing() {
@@ -54,15 +54,15 @@ export default function TechnicalServiceListing() {
     <div className="p-8 space-y-8 max-w-[1600px] mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Technical Service Tracking</h1>
-          <p className="text-slate-500 mt-1">Manage and track all repair tickets.</p>
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Teknik Servis Takibi</h1>
+          <p className="text-slate-500 mt-1">Tüm servis kayıtlarını yönetin ve takip edin.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative group">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-blue-500 transition-colors" />
             <input
               className="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-sm w-80 focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
-              placeholder="IMEI, Customer or Ticket ID..."
+              placeholder="IMEI, Müşteri veya Kayıt ID..."
               type="text"
             />
           </div>
@@ -71,7 +71,7 @@ export default function TechnicalServiceListing() {
             className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-900/20 transition-all active:scale-95 text-sm"
           >
             <Plus className="w-4 h-4" />
-            New Ticket
+            Yeni Kayıt
           </Link>
         </div>
       </div>
@@ -79,31 +79,31 @@ export default function TechnicalServiceListing() {
       {/* Filter Bar */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="md:col-span-3 space-y-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Status</label>
+          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Durum</label>
           <select className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none cursor-pointer">
-            <option>All Statuses</option>
-            <option>New Record</option>
-            <option>Repairing</option>
-            <option>Ready</option>
-            <option>Delivered</option>
+            <option>Tüm Durumlar</option>
+            <option>Yeni Kayıt</option>
+            <option>Onarımda</option>
+            <option>Hazır</option>
+            <option>Teslim Edildi</option>
           </select>
         </div>
         <div className="md:col-span-3 space-y-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Technician</label>
+          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Teknisyen</label>
           <select className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none cursor-pointer">
-            <option>All Technicians</option>
+            <option>Tüm Teknisyenler</option>
             <option>Ahmet Yılmaz</option>
             <option>Merve Kaya</option>
           </select>
         </div>
         <div className="md:col-span-3 space-y-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Date Range</label>
+          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Tarih Aralığı</label>
           <input className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none" type="date" />
         </div>
         <div className="md:col-span-2 space-y-2">
-          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Brand/Model</label>
+          <label className="text-xs font-bold uppercase tracking-wider text-slate-500 pl-1">Marka/Model</label>
           <select className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 outline-none cursor-pointer">
-            <option>All</option>
+            <option>Tümü</option>
             <option>Apple</option>
             <option>Samsung</option>
           </select>
@@ -121,13 +121,13 @@ export default function TechnicalServiceListing() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 dark:bg-slate-950/50">
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">ID / Date</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Customer</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Device & Fault</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Technician</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Status</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Payment</th>
-                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800 text-right">Actions</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">ID / Tarih</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Müşteri</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Cihaz & Arıza</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Teknisyen</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Durum</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800">Ödeme</th>
+                <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 border-b border-slate-100 dark:border-slate-800 text-right">İşlemler</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -160,7 +160,7 @@ export default function TechnicalServiceListing() {
                         <span className="text-sm">{ticket.technician}</span>
                       </div>
                     ) : (
-                      <span className="text-xs text-slate-400 italic">Not Assigned</span>
+                      <span className="text-xs text-slate-400 italic">Atanmadı</span>
                     )}
                   </td>
                   <td className="px-6 py-5">
@@ -169,11 +169,11 @@ export default function TechnicalServiceListing() {
                       statusStyles[ticket.status as keyof typeof statusStyles]
                     )}>
                       <span className={cn("w-1.5 h-1.5 rounded-full mr-2",
-                        ticket.status === 'REPAIRING' ? "bg-orange-500" :
-                        ticket.status === 'READY' ? "bg-green-500" :
-                        ticket.status === 'NEW' ? "bg-blue-500" : "bg-slate-500"
+                        ticket.status === 'ONARIMDA' ? "bg-orange-500" :
+                        ticket.status === 'HAZIR' ? "bg-green-500" :
+                        ticket.status === 'YENİ' ? "bg-blue-500" : "bg-slate-500"
                       )}></span>
-                      {ticket.status.replace('_', ' ')}
+                      {ticket.status}
                     </span>
                   </td>
                   <td className="px-6 py-5">
@@ -185,19 +185,19 @@ export default function TechnicalServiceListing() {
                         ticket.paid === "partial" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400" :
                         "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                       )}>
-                        {ticket.paid === true ? "Paid" : ticket.paid === "partial" ? "Partial" : "Unpaid"}
+                        {ticket.paid === true ? "Ödendi" : ticket.paid === "partial" ? "Kısmi" : "Ödenmedi"}
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-5 text-right">
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Details">
+                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Detaylar">
                         <Eye className="w-4 h-4" />
                       </button>
-                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Edit">
+                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Düzenle">
                         <Edit className="w-4 h-4" />
                       </button>
-                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Print">
+                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400" title="Yazdır">
                         <Printer className="w-4 h-4" />
                       </button>
                     </div>
@@ -210,7 +210,7 @@ export default function TechnicalServiceListing() {
 
         {/* Pagination */}
         <div className="px-6 py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-          <span className="text-sm text-slate-500">Showing 1-10 of 24 records.</span>
+          <span className="text-sm text-slate-500">24 kayıttan 1-10 arası gösteriliyor.</span>
           <div className="flex items-center gap-2">
             <button className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg text-slate-400 disabled:opacity-50">
               <ChevronLeft className="w-4 h-4" />
@@ -228,10 +228,10 @@ export default function TechnicalServiceListing() {
       {/* Stats Cards Preview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
-          { label: "Pending", value: 12, icon: Clock, color: "text-blue-600", bg: "bg-blue-100" },
-          { label: "In Progress", value: 8, icon: Clock, color: "text-orange-600", bg: "bg-orange-100" },
-          { label: "Ready", value: 4, icon: Clock, color: "text-green-600", bg: "bg-green-100" },
-          { label: "Today Collection", value: "8.550 TL", icon: CreditCard, color: "text-emerald-600", bg: "bg-emerald-100" },
+          { label: "Bekleyen", value: 12, icon: Clock, color: "text-blue-600", bg: "bg-blue-100" },
+          { label: "Onarımda", value: 8, icon: Clock, color: "text-orange-600", bg: "bg-orange-100" },
+          { label: "Hazır", value: 4, icon: Clock, color: "text-green-600", bg: "bg-green-100" },
+          { label: "Bugünkü Tahsilat", value: "8.550 ₺", icon: CreditCard, color: "text-emerald-600", bg: "bg-emerald-100" },
         ].map((stat, i) => (
           <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center gap-4">
             <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", stat.bg)}>

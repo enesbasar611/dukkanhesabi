@@ -19,16 +19,16 @@ export default function MessagingGateway() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8 bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 antialiased font-inter tracking-tight">
-      {/* Header & Intro */}
+      {/* Başlık ve Giriş */}
       <div className="flex flex-col gap-2">
-        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600">Communication Layer</span>
-        <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white leading-none uppercase">Messaging Gateway</h1>
-        <p className="text-slate-500 font-bold text-sm max-w-3xl mt-2 uppercase tracking-tight">Configure how TechAtelier communicates with your clients and staff. Toggle between SMS and WhatsApp protocols for automated operational triggers.</p>
+        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600">İletişim Katmanı</span>
+        <h1 className="text-4xl font-black tracking-tighter text-slate-900 dark:text-white leading-none uppercase">Mesajlaşma Ağ Geçidi</h1>
+        <p className="text-slate-500 font-bold text-sm max-w-3xl mt-2 uppercase tracking-tight">TechAtelier&#39;in müşterilerinizle ve personelinizle nasıl iletişim kuracağını yapılandırın. Otomatik operasyonel tetikleyiciler için SMS ve WhatsApp protokolleri arasında geçiş yapın.</p>
       </div>
 
-      {/* Bento Grid Layout */}
+      {/* Bento Izgara Düzeni */}
       <div className="grid grid-cols-12 gap-8">
-        {/* WhatsApp API Configuration (Large Card) */}
+        {/* WhatsApp API Yapılandırması (Geniş Kart) */}
         <div className="col-span-12 lg:col-span-8 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:bg-blue-600/10 transition-colors"></div>
 
@@ -38,8 +38,8 @@ export default function MessagingGateway() {
                 <QrCode className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">WhatsApp API Node</h3>
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Pair your business instance via QR or Secret Key</p>
+                <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">WhatsApp API Düğümü</h3>
+                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">İşletme örneğinizi QR veya Gizli Anahtar ile eşleştirin</p>
               </div>
             </div>
             <div className={cn(
@@ -47,59 +47,59 @@ export default function MessagingGateway() {
               waConnected ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-red-50 text-red-600 border-red-100"
             )}>
               <span className={cn("w-2 h-2 rounded-full", waConnected ? "bg-emerald-500 animate-pulse" : "bg-red-500")}></span>
-              {waConnected ? "Connected" : "Disconnected"}
+              {waConnected ? "Bağlı" : "Bağlantı Kesildi"}
             </div>
           </div>
 
           <div className="flex flex-col xl:flex-row gap-12 items-center relative z-10">
-            {/* QR Code Mockup */}
+            {/* QR Kod Simülasyonu */}
             <div className="w-56 h-56 bg-white dark:bg-white border-8 border-slate-50 dark:border-slate-800 p-5 rounded-[2.5rem] flex items-center justify-center relative shadow-2xl group cursor-pointer transition-all hover:scale-105 active:scale-95">
               <Image
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa9WFftxgjCHXzUA5e0VQRBXY0CNLcZ_tYo3-2ay2N6CeuEkckC__xCcxW-fHspEyFGoYZsSiFh4i7KN0K9vdxV2mL2Vj6D8ibd99oX5HdsmlKx6R5uUtA1XYtNPJwSQqZ-QEM9Q600YP64jzcFMr53Og9EXYH5Px0ioKX2SKGwgE5eEH9p2u-2mQfOdQXAL2ozrESymHklyYQrNLzVrqIkrnf3bi1xChrOvz2wtsBvsv-yfVmXC8LjMhuuf9FlkfxTA7VwGbrNdc"
-                alt="QR Code"
+                alt="QR Kod"
                 width={200}
                 height={200}
                 className="opacity-90 transition-opacity group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-white/60 dark:bg-black/40 backdrop-blur-[4px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all rounded-[2.5rem]">
-                <button className="bg-blue-600 text-white text-[10px] font-black px-6 py-3 rounded-2xl shadow-2xl shadow-blue-600/40 uppercase tracking-widest active:scale-90 transition-all">REFRESH QR</button>
+                <button className="bg-blue-600 text-white text-[10px] font-black px-6 py-3 rounded-2xl shadow-2xl shadow-blue-600/40 uppercase tracking-widest active:scale-90 transition-all">QR YENİLE</button>
               </div>
             </div>
 
             <div className="flex-1 grid grid-cols-1 gap-6 w-full">
-              <ConfigInput label="Business API Key" value="*************************" password icon={Copy} />
+              <ConfigInput label="İşletme API Anahtarı" value="*************************" password icon={Copy} />
               <ConfigInput label="Webhook URL" value="https://api.techatelier.com/v1/webhook/wa_09x" readOnly />
 
               <div className="flex items-center gap-6 mt-4">
-                <button className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">Validate Session</button>
+                <button className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">Oturumu Doğrula</button>
                 <button
                   onClick={() => setWaConnected(!waConnected)}
                   className="text-red-500 text-[10px] font-black uppercase tracking-[0.2em] hover:underline decoration-2 underline-offset-8 transition-all"
                 >
-                  {waConnected ? "Disconnect Instance" : "Connect Instance"}
+                  {waConnected ? "Örneği Ayır" : "Örneği Bağla"}
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* SMS Gateway (Small Card) */}
+        {/* SMS Ağ Geçidi (Küçük Kart) */}
         <div className="col-span-12 lg:col-span-4 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 flex flex-col group">
           <div className="flex items-center gap-6 mb-10">
             <div className="w-16 h-16 rounded-[1.5rem] bg-blue-500/10 flex items-center justify-center text-blue-500 shadow-xl border border-blue-500/20 transition-transform group-hover:scale-110">
               <MessageSquare className="w-8 h-8" />
             </div>
             <div>
-              <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">SMS Gateway</h3>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Twilio Integration</p>
+              <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">SMS Ağ Geçidi</h3>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Twilio Entegrasyonu</p>
             </div>
           </div>
 
           <div className="space-y-6 flex-1">
             <div className="p-6 rounded-[1.5rem] bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-inner group/balance">
               <div className="flex justify-between items-center mb-3">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pre-paid Balance</span>
-                <span className="text-sm font-black text-blue-600 tracking-tighter">$142.80</span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ön Ödemeli Bakiye</span>
+                <span className="text-sm font-black text-blue-600 tracking-tighter">₺142,80</span>
               </div>
               <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
                 <div className="w-[70%] h-full bg-blue-600 shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-all duration-1000 group-hover/balance:brightness-125"></div>
@@ -107,7 +107,7 @@ export default function MessagingGateway() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Sender ID</label>
+              <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Gönderen Kimliği (Sender ID)</label>
               <input
                 className="w-full bg-slate-50 dark:bg-slate-950 border-none rounded-2xl px-6 py-3.5 text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest shadow-inner focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
                 type="text"
@@ -118,68 +118,68 @@ export default function MessagingGateway() {
 
           <button className="mt-10 w-full py-4 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-slate-50 dark:hover:bg-slate-950 hover:border-blue-500/30 hover:text-blue-500 transition-all active:scale-95 group shadow-inner">
             <Plus className="w-4 h-4 inline-block mr-2 group-hover:scale-125 transition-transform" />
-            RELOAD CREDITS
+            KREDİ YÜKLE
           </button>
         </div>
 
-        {/* Trigger Matrix (Full Width) */}
+        {/* Tetikleyici Matrisi (Tam Genişlik) */}
         <div className="col-span-12 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 overflow-hidden">
           <div className="px-10 py-8 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-950/20">
             <div>
-              <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">Trigger Matrix</h3>
-              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Define primary channels and templates for automated alerts</p>
+              <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">Tetikleyici Matrisi</h3>
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Otomatik uyarılar için birincil kanalları ve şablonları tanımlayın</p>
             </div>
-            <button className="px-8 py-3.5 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">Save All Changes</button>
+            <button className="px-8 py-3.5 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">Tüm Değişiklikleri Kaydet</button>
           </div>
 
           <div className="overflow-x-auto custom-scrollbar">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-slate-50 dark:bg-slate-950/50 text-[10px] font-black tracking-[0.3em] text-slate-400 uppercase">
-                  <th className="px-10 py-6">Event Trigger</th>
-                  <th className="px-6 py-6">Primary Channel</th>
-                  <th className="px-6 py-6">Status</th>
-                  <th className="px-10 py-6">Template Preview</th>
-                  <th className="px-6 py-6 text-right">Action</th>
+                  <th className="px-10 py-6">Olay Tetikleyicisi</th>
+                  <th className="px-6 py-6">Birincil Kanal</th>
+                  <th className="px-6 py-6">Durum</th>
+                  <th className="px-10 py-6">Şablon Önizleme</th>
+                  <th className="px-6 py-6 text-right">İşlem</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 <TriggerRow
                   icon={Database}
                   variant="amber"
-                  title="Low Stock"
-                  desc="Stock levels < 10%"
+                  title="Düşük Stok"
+                  desc="Stok seviyeleri < %10"
                   primary="wa"
                   enabled
-                  template="Alert: {{Product_Name}} is low on stock ({{Stock_Qty}} remaining)."
+                  template="Uyarı: {{Urun_Adi}} stokta azalıyor ({{Stok_Adedi}} kaldı)."
                 />
                 <TriggerRow
                   icon={CheckCircle2}
                   variant="emerald"
-                  title="Service Ready"
-                  desc="Order status → Finished"
+                  title="Servis Hazır"
+                  desc="Sipariş durumu → Tamamlandı"
                   primary="sms"
                   enabled
-                  template="Hello {{Customer_Name}}, your {{Device_Model}} is ready for pickup."
+                  template="Merhaba {{Musteri_Adi}}, {{Cihaz_Modeli}} cihazınız teslim alınmaya hazırdır."
                 />
                 <TriggerRow
                   icon={Zap}
                   variant="red"
-                  title="Low Margin Alert"
-                  desc="Profit margin < 15%"
+                  title="Düşük Marj Uyarısı"
+                  desc="Kâr marjı < %15"
                   primary="wa"
                   enabled={false}
-                  template="Admin Notice: Transaction {{Invoice_ID}} has a low margin."
+                  template="Yönetici Bildirimi: {{Fatura_ID}} numaralı işlemin marjı düşük."
                 />
               </tbody>
             </table>
           </div>
         </div>
 
-        {/* Template Editor (Bottom Section) */}
+        {/* Şablon Düzenleyici (Alt Bölüm) */}
         <div className="col-span-12 lg:col-span-7 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800">
           <div className="flex items-center justify-between mb-10">
-            <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">Active Template: <span className="text-blue-600">Service Ready</span></h3>
+            <h3 className="text-xl font-black tracking-tight uppercase tracking-widest">Aktif Şablon: <span className="text-blue-600">Servis Hazır</span></h3>
             <span className="text-[9px] bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-800 font-mono font-black text-slate-500 uppercase tracking-widest shadow-inner">ID: TMP_882</span>
           </div>
 
@@ -187,48 +187,48 @@ export default function MessagingGateway() {
             <div className="relative group">
               <textarea
                 className="w-full bg-slate-50 dark:bg-slate-950 border-none rounded-3xl p-8 text-sm font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500/20 outline-none resize-none min-h-[180px] leading-relaxed shadow-inner"
-                defaultValue="Hello {{Customer_Name}}, Your {{Device_Model}} is now ready for collection at {{Store_Name}}. Ticket ID: #{{Ticket_ID}}. Thank you for choosing TechAtelier!"
+                defaultValue="Merhaba {{Musteri_Adi}}, {{Cihaz_Modeli}} cihazınız artık {{Magaza_Adi}} şubemizde teslim alınmaya hazırdır. Fiş ID: #{{Fis_ID}}. TechAtelier'i seçtiğiniz için teşekkür ederiz!"
               ></textarea>
-              <div className="absolute bottom-5 right-5 text-[9px] font-black text-slate-300 uppercase tracking-widest">142/160 chars</div>
+              <div className="absolute bottom-5 right-5 text-[9px] font-black text-slate-300 uppercase tracking-widest">142/160 karakter</div>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <VariableTag name="Customer_Name" />
-              <VariableTag name="Device_Model" />
-              <VariableTag name="Ticket_ID" />
-              <VariableTag name="Store_Name" />
-              <VariableTag name="Total_Amount" />
+              <VariableTag name="Musteri_Adi" />
+              <VariableTag name="Cihaz_Modeli" />
+              <VariableTag name="Fis_ID" />
+              <VariableTag name="Magaza_Adi" />
+              <VariableTag name="Toplam_Tutar" />
             </div>
           </div>
         </div>
 
-        {/* Visual Preview (Mobile Glass) */}
+        {/* Görsel Önizleme (Mobil Cam) */}
         <div className="col-span-12 lg:col-span-5 bg-slate-900 rounded-[3.5rem] p-8 shadow-2xl flex items-center justify-center border-[10px] border-slate-800 relative h-[450px] lg:h-auto overflow-hidden">
           <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-6 bg-slate-800 rounded-full z-20"></div>
 
           <div className="w-full max-w-[300px] space-y-6 relative z-10">
-            {/* WhatsApp Preview Card */}
+            {/* WhatsApp Önizleme Kartı */}
             <div className="bg-white rounded-2xl p-4 shadow-2xl transform -rotate-3 scale-95 relative z-10 border-l-8 border-emerald-500 shadow-emerald-500/10 transition-transform hover:rotate-0 transition-all duration-500 cursor-crosshair">
               <div className="flex justify-between items-center mb-3">
                 <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">WhatsApp Business</span>
                 <span className="text-[9px] font-black text-slate-300 uppercase">14:20</span>
               </div>
               <p className="text-[12px] leading-relaxed text-slate-800 font-medium">
-                Hello <b className="font-black">John Doe</b>, your <b className="font-black text-blue-600">iPhone 13 Pro</b> is now ready for collection at <b className="font-black">Main Street Hub</b>.
+                Merhaba <b className="font-black">Ahmet Yılmaz</b>, <b className="font-black text-blue-600">iPhone 13 Pro</b> cihazınız artık <b className="font-black">Merkez Şube</b> adresimizde teslim alınmaya hazırdır.
               </p>
             </div>
 
-            {/* SMS Preview Card */}
+            {/* SMS Önizleme Kartı */}
             <div className="bg-[#E9E9EB] rounded-[2rem] p-5 shadow-2xl transform rotate-2 relative z-20 shadow-slate-400/20 transition-transform hover:rotate-0 transition-all duration-500 cursor-crosshair">
               <p className="text-[12px] text-black font-medium leading-relaxed">
-                <span className="font-black uppercase tracking-tighter">TechAtelier:</span> Hello John, your device is ready! Ticket #4928. Total: $85.00. See you soon!
+                <span className="font-black uppercase tracking-tighter">TechAtelier:</span> Merhaba Ahmet, cihazınız hazır! Fiş #4928. Toplam: 85,00 ₺. Görüşmek üzere!
               </p>
               <div className="absolute -bottom-1.5 right-6 w-5 h-5 bg-[#E9E9EB] transform rotate-45 shadow-sm"></div>
             </div>
           </div>
 
           <div className="absolute bottom-10 left-0 right-0 text-center">
-            <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] animate-pulse">Real-time Visualizer</span>
+            <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] animate-pulse">Gerçek Zamanlı Görselleştirici</span>
           </div>
         </div>
       </div>

@@ -17,129 +17,129 @@ import { cn } from "@/lib/utils";
 export default function SMSAutomations() {
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8 bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 antialiased font-inter tracking-tight relative overflow-hidden">
-      {/* Visual Background Accents */}
+      {/* Görsel Arka Plan Vurguları */}
       <div className="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
 
-      {/* Page Header Section */}
+      {/* Sayfa Başlığı Bölümü */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-2 block">Automation Layer</span>
-          <h2 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase leading-none">Notification Center</h2>
-          <p className="text-slate-500 font-bold text-sm max-w-lg mt-2 uppercase tracking-tight leading-relaxed">Configure surgical precision for your business alerts. Define triggers, thresholds, and custom templates for automated SMS outreach.</p>
+          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-2 block">Otomasyon Katmanı</span>
+          <h2 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase leading-none">Bildirim Merkezi</h2>
+          <p className="text-slate-500 font-bold text-sm max-w-lg mt-2 uppercase tracking-tight leading-relaxed">İşletme uyarılarınız için hassas yapılandırmalar oluşturun. Otomatik SMS gönderimi için tetikleyicileri, eşikleri ve özel şablonları tanımlayın.</p>
         </div>
 
         <button className="bg-blue-600 text-white px-8 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95 flex items-center gap-3">
           <PlusCircle className="w-5 h-5" />
-          Create New Rule
+          Yeni Kural Oluştur
         </button>
       </div>
 
-      {/* Dashboard Layout (Bento Grid Style) */}
+      {/* Kontrol Paneli Düzeni (Bento Izgara Stili) */}
       <div className="grid grid-cols-12 gap-8">
-        {/* Rule Management (Main List) */}
+        {/* Kural Yönetimi (Ana Liste) */}
         <div className="col-span-12 lg:col-span-8 space-y-8">
           <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 overflow-hidden">
             <div className="px-10 py-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/20 flex justify-between items-center">
-              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600">Active Automation Rules</span>
-              <span className="text-[10px] bg-blue-600/10 text-blue-600 px-4 py-1.5 rounded-lg uppercase font-black tracking-widest shadow-inner">3 Rules Active</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600">Aktif Otomasyon Kuralları</span>
+              <span className="text-[10px] bg-blue-600/10 text-blue-600 px-4 py-1.5 rounded-lg uppercase font-black tracking-widest shadow-inner">3 Kural Aktif</span>
             </div>
 
             <div className="divide-y divide-slate-100 dark:divide-slate-800">
               <RuleItem
                 icon={TrendingDown}
-                title="Low Profit Margin Alert"
-                desc="Triggers if profit margin drops below 15%"
-                user="Store Owner"
-                schedule="Real-time"
+                title="Düşük Kâr Marjı Uyarısı"
+                desc="Kâr marjı %15'in altına düştüğünde tetiklenir"
+                user="Mağaza Sahibi"
+                schedule="Gerçek Zamanlı"
                 enabled
               />
               <RuleItem
                 icon={Box}
-                title="Critical Stock Warning"
-                desc="Triggers when stock count is less than 5 units"
-                user="Warehouse Mgr"
-                schedule="Daily @ 09:00"
+                title="Kritik Stok Uyarısı"
+                desc="Stok adedi 5 ünitenin altına düştüğünde tetiklenir"
+                user="Depo Müdürü"
+                schedule="Günlük @ 09:00"
                 enabled
                 activeRow
               />
               <RuleItem
                 icon={MonitorCheck}
-                title="Service Ready Notification"
-                desc="Triggers when ticket status changes to 'COMPLETED'"
-                user="Customer"
-                schedule="Instant"
+                title="Servis Hazır Bildirimi"
+                desc="Fiş durumu 'TAMAMLANDI' olarak değiştiğinde tetiklenir"
+                user="Müşteri"
+                schedule="Anında"
                 enabled={false}
               />
             </div>
           </div>
 
-          {/* SMS Logs */}
+          {/* SMS Günlükleri */}
           <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 overflow-hidden flex flex-col group">
             <div className="px-10 py-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/20 flex justify-between items-center">
-              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Recent Transmission Logs</h4>
-              <button className="text-[9px] font-black text-blue-600 uppercase tracking-widest hover:underline decoration-2 underline-offset-4">View All Logs</button>
+              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Son Gönderim Günlükleri</h4>
+              <button className="text-[9px] font-black text-blue-600 uppercase tracking-widest hover:underline decoration-2 underline-offset-4">Tümünü Gör</button>
             </div>
 
             <div className="overflow-x-auto custom-scrollbar">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-slate-50/50 dark:bg-slate-950/50 text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
-                    <th className="px-10 py-5">Timestamp</th>
-                    <th className="px-8 py-5">Recipient</th>
-                    <th className="px-8 py-5">Trigger Event</th>
-                    <th className="px-10 py-5 text-right">Status</th>
+                    <th className="px-10 py-5">Zaman Damgası</th>
+                    <th className="px-8 py-5">Alıcı</th>
+                    <th className="px-8 py-5">Tetikleyici Olay</th>
+                    <th className="px-10 py-5 text-right">Durum</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
-                  <LogRow time="14:22:10 Today" recipient="+1 (555) 0123" event="Critical Stock" status="Delivered" variant="emerald" />
-                  <LogRow time="12:05:44 Today" recipient="+1 (555) 8829" event="Service Ready" status="Sent" variant="blue" />
-                  <LogRow time="09:15:22 Today" recipient="+1 (555) 0123" event="Critical Stock" status="Failed" variant="red" />
+                  <LogRow time="14:22:10 Bugün" recipient="+90 (555) 0123" event="Kritik Stok" status="İletildi" variant="emerald" />
+                  <LogRow time="12:05:44 Bugün" recipient="+90 (555) 8829" event="Servis Hazır" status="Gönderildi" variant="blue" />
+                  <LogRow time="09:15:22 Bugün" recipient="+90 (555) 0123" event="Kritik Stok" status="Hata" variant="red" />
                 </tbody>
               </table>
             </div>
           </div>
         </div>
 
-        {/* Alert Configuration & Templates (Right Rail) */}
+        {/* Uyarı Yapılandırması ve Şablonlar (Sağ Sütun) */}
         <div className="col-span-12 lg:col-span-4 space-y-8">
-          {/* Configuration Panel */}
+          {/* Yapılandırma Paneli */}
           <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl shadow-black/5 border border-blue-500/20 dark:border-blue-500/10 p-10 flex flex-col group relative overflow-hidden bg-gradient-to-br from-white to-blue-50/20 dark:from-slate-900 dark:to-blue-900/5">
             <div className="flex items-center gap-4 mb-10 relative z-10">
               <div className="p-3 bg-blue-600/10 rounded-2xl text-blue-600 shadow-xl shadow-blue-600/5 transition-transform group-hover:scale-110">
                 <Settings2 className="w-6 h-6" />
               </div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-900 dark:text-white">Rule Parameters</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-900 dark:text-white">Kural Parametreleri</h4>
             </div>
 
             <div className="space-y-6 relative z-10">
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Threshold Value</label>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Eşik Değeri</label>
                 <div className="relative group/input">
                   <input className="w-full bg-slate-50 dark:bg-slate-950 border-none rounded-2xl px-6 py-4 text-sm font-black text-slate-900 dark:text-white shadow-inner outline-none focus:ring-2 focus:ring-blue-500/20 transition-all" type="number" defaultValue="5" />
-                  <span className="absolute right-6 top-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Units</span>
+                  <span className="absolute right-6 top-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">Adet</span>
                 </div>
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Recipient Category</label>
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] ml-2">Alıcı Kategorisi</label>
                 <div className="relative group/input">
                   <select className="w-full bg-slate-50 dark:bg-slate-950 border-none rounded-2xl px-6 py-4 text-[10px] font-black text-slate-900 dark:text-white shadow-inner outline-none focus:ring-2 focus:ring-blue-500/20 transition-all uppercase tracking-widest appearance-none cursor-pointer">
-                    <option>Warehouse Manager</option>
-                    <option>Technicians</option>
-                    <option>Store Owner</option>
-                    <option>All Staff</option>
+                    <option>Depo Müdürü</option>
+                    <option>Teknisyenler</option>
+                    <option>Mağaza Sahibi</option>
+                    <option>Tüm Personel</option>
                   </select>
                 </div>
               </div>
             </div>
 
             <div className="mt-10 pt-10 border-t border-slate-100 dark:border-slate-800 relative z-10">
-              <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] mb-4 block ml-2">SMS Template Editor</label>
+              <label className="text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] mb-4 block ml-2">SMS Şablon Düzenleyici</label>
               <div className="relative group/editor">
                 <textarea
                   className="w-full bg-slate-50 dark:bg-slate-950 border-none rounded-3xl p-6 text-[11px] font-bold text-slate-900 dark:text-white leading-relaxed placeholder:text-slate-300 dark:placeholder:text-slate-700 shadow-inner resize-none focus:ring-2 focus:ring-blue-500/20 outline-none"
                   rows={5}
-                  defaultValue="ALERT: Item {{Item_Name}} is below critical threshold. Current stock: {{Stock_Level}} units. Please restock immediately."
+                  defaultValue="UYARI: {{Item_Name}} kritik eşiğin altında. Mevcut stok: {{Stock_Level}} adet. Lütfen hemen stok yenileyin."
                 ></textarea>
                 <div className="absolute bottom-4 right-4 text-[8px] font-black text-slate-300 uppercase tracking-widest">112/160</div>
               </div>
@@ -152,13 +152,13 @@ export default function SMSAutomations() {
             </div>
 
             <button className="w-full mt-10 bg-blue-600 text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95 relative z-10">
-              Save Rule Configuration
+              Kural Yapılandırmasını Kaydet
             </button>
           </div>
 
-          {/* Gateway Configuration */}
+          {/* Ağ Geçidi Yapılandırması */}
           <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-slate-800 p-10 flex flex-col group">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Gateway Status</h4>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-8">Ağ Geçidi Durumu</h4>
             <div className="space-y-4 flex-1">
               <div className="flex items-center justify-between p-5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 shadow-inner group/api cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
                 <div className="flex items-center gap-4">
@@ -167,7 +167,7 @@ export default function SMSAutomations() {
                   </div>
                   <div>
                     <p className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-tight">Twilio API</p>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Operational</p>
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Çalışıyor</p>
                   </div>
                 </div>
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
@@ -175,7 +175,7 @@ export default function SMSAutomations() {
 
               <button className="w-full flex items-center justify-center gap-3 py-4 bg-slate-50 dark:bg-slate-950 border-2 border-dashed border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-600 rounded-2xl transition-all group/test hover:border-blue-500/30 hover:bg-blue-500/5 hover:text-blue-600 active:scale-95">
                 <Send className="w-4 h-4 group-hover/test:translate-x-1 group-hover/test:-translate-y-1 transition-transform" />
-                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Send Test SMS</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em]">Test SMS Gönder</span>
               </button>
             </div>
           </div>
