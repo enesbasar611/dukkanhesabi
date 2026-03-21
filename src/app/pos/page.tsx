@@ -14,206 +14,266 @@ import {
   Banknote,
   ArrowLeftRight,
   Receipt,
-
   Wrench,
-  ChevronDown
+  ChevronDown,
+  History,
+  X,
+  PlusCircle,
+  CheckCircle,
+  Tag as Sell
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/hooks/use-cart";
+import { useState } from "react";
 
-const categories = ["All Items", "Accessories", "Spare Parts", "New Phones", "2nd Hand", "Repair Service"];
+const categories = ["Tüm Ürünler", "Aksesuarlar", "Yedek Parçalar", "Yeni Telefonlar", "2. El", "Tamir Servisi"];
 
 const products = [
-  { id: "1", name: "iPhone 13 Pro Max MagSafe Case", cat: "Apple Accessories", price: 29.99, stock: 24, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaUQ__7GgNffEKtjNCVf1RMjEeBtWEL1kXGFeh-Pi3EqmlGfrO-EQ-LACEWgNdbq16d9JSgTlhAaoCRkxUOMERZ1nAf7x0JRovvj7pTH-OarauD7qZMYk0P7ZhK1Afr8VHgau-V-5mDl0irPeWE5urPsi9J5KJD34ZjYp4iPq-BqL8GnHtE7eH-V2YsOLQTP88xR38QHHo7QL1m-cIiZASXDoOm4r4R4l6w9tNrqvmSLeUyUynIo__0qgAbpDtptc7yGY-S9l8ywk" },
-  { id: "2", name: "USB-C to Lightning 2.0m", cat: "Cables & Power", price: 19.50, stock: 3, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC6eMpukNstQd3nIzPnC0cI6vbY33jyNiIpmHSuK2yoDRFqilUe3RUkXpAqR7qIln8RLgecKakaJnj37g_7XN304BG8_3mF0uDLu_erCoa0EBut0h9fAkmlZCc-v6uT-Hhw-oEU6ix9ZEKrVrZ3Hm_rVkm-BOHh0_HaCZZ5m5ycmRWqkqcdgt-UX_pGUxTKGOg3OkFjHpQu9TD2xlfTHfvzLC9Xen_HTBRDqafGCze9pneukBbWhH0K9MYV5tz9PcdhohiAAxGf3Kw" },
-  { id: "3", name: "iPhone 12 Replacement Battery", cat: "Internal Components", price: 45.00, stock: 12, img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB512RglxItPQ77vidmYa08bVBCmkG6zsSuayeMv07miimxbszlXdzpnIIR9wPtwaNQG8xMOuQn0VAFRsg-Ka3xQz7G_LIJaswBpacrcen9ZrC4A0QIzpNLRR7vIwjudGe_tE6j1EvMnNRjLgD_7Ug0OtUkgZYnJM7E34fIUW23mGC3Vn5rrqUKb3-CMR2u4uzkyub4beFspcztqicbo44j2EDQJSuC0hp5fG-JOlYkFEPkLdmZFh3gWIDI7oBBPKvP35v0k9SIEbU" },
+  {
+    id: "gpu-refurb",
+    name: "GPU Yenileme",
+    desc: "Derin temizlik, termal macun değişimi ve stres testi.",
+    cat: "Servis",
+    price: 129.00,
+    stock: 99,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuACU3MYcncu_dhHeJmagcSKptPcErHkuXjJnXaBXVIbTaHoSGqkKDjnCw1SXzwlppI1YWFsXfg7nyuPy4_kN2BbkYSa2E_A6pnmN1gr2No2Yzvs2IYcMYJlJkLX8kyo9ya0S-dv_asfe1WUsZ2iYjGm_qXyx8QPcSjngxSb6GJPZGL9zmsgn1s4qQjxHafi2f557sftqNiGcTy9n_Klo85n4kNT8Z9gZIJvYddTeWeImw_Vj8ldvmBGkc3lCV6yIp8PxPxDJxLWADw",
+    featured: true
+  },
+  {
+    id: "screen-repair",
+    name: "Ekran Tamiri",
+    cat: "Servis",
+    price: 85.00,
+    stock: 99,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2rSJDkwNhbIk1T6IY33aScJGyMle99Ci07KVosbOIM8D3J3yZt8ZQTOvgeAbDBzJEsSf0ncFRbxbv_oDf8tUgTSsnj8qjy8SL8w3uoYVRJId58JKQ8LGM0Ts-HUVBptlp704-WZfTSDGqMYrJOr4X2TDkGDgmElGqTM9caUPPN5ff0DRx3l39RNb7VFPjbPivIYuODUFPH1Ic_ocDUhyCXpTMMNEq_xLj2_UGrSHwhHsZIKmqrL3D8a1HLJ3Q4ehZD43E6qQRG10"
+  },
+  {
+    id: "diag",
+    name: "Arıza Tespiti",
+    cat: "Servis",
+    price: 45.00,
+    stock: 99,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCMMoGeiR8NNOWTSIkjM_2hlWJhg6AJMCXMWk2ffZ5dQVNBjedYC5boDMKlzxUrVILu1OMavttJJI4DDawgh95hfJH1a4jUEnOln05W3Dkd2p-XPREDZrEhgIh6TfS1KmZM8RToehIU4AJomr8AbfDrZwXO167Mx2yHaIuOKaR9R5bWm5VyLbMIG_1m4vLgzh0oLLQhhBXrzg6XCCvEsJC_L3ivB3uE3oLIZcPqQsqcu6BHjF_0vBVHJ9D8z40uj-n28hxFZbZHlPw"
+  },
+  { id: "batt", name: "Batarya Değişimi", cat: "Servis", price: 59.00, stock: 99 },
+  { id: "os-install", name: "Yazılım Kurulumu", cat: "Servis", price: 75.00, stock: 99 },
 ];
 
 export default function POSSystem() {
   const { items, addItem, removeItem, updateQuantity, total } = useCartStore();
+  const [isCartOpen, setIsCartOpen] = useState(true);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)] bg-slate-50 dark:bg-slate-950">
-      <div className="flex-1 flex overflow-hidden">
-        {/* Left Side: Catalog */}
-        <section className="flex-1 flex flex-col p-6 overflow-y-auto custom-scrollbar gap-8">
-          {/* Header & Filter */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Register Open • Station 04</span>
-            </div>
-
-            <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-8 relative group">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
-                <input
-                  className="w-full pl-12 pr-12 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm focus:ring-2 focus:ring-blue-500/20 outline-none text-sm font-bold"
-                  placeholder="Search products, IMEIs, or scan barcode..."
-                />
-                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-blue-600 hover:scale-110 transition-transform">
-                  <Scan className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="col-span-4 flex gap-2">
-                <button className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-6 flex items-center justify-between text-xs font-black text-slate-700 dark:text-slate-300 shadow-sm uppercase tracking-widest">
-                  <span>All Brands</span>
-                  <ChevronDown className="w-4 h-4" />
-                </button>
-                <button className="w-14 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl flex items-center justify-center text-slate-700 dark:text-slate-300 shadow-sm">
-                  <Filter className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="flex gap-2 overflow-x-auto no-scrollbar">
-              {categories.map((cat, i) => (
-                <button
-                  key={cat}
-                  className={cn(
-                    "px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all",
-                    i === 0 ? "bg-blue-600 text-white shadow-lg shadow-blue-500/20" : "bg-white dark:bg-slate-900 text-slate-500 border border-slate-200 dark:border-slate-800 hover:border-blue-400"
-                  )}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+    <div className="flex h-[calc(100vh-64px)] bg-slate-950 overflow-hidden relative">
+      {/* Main Content: Product Grid */}
+      <main className="flex-1 overflow-y-auto p-8 custom-scrollbar bg-slate-950">
+        <header className="flex justify-between items-center mb-10">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight text-white">Satış Noktası (POS)</h1>
+            <p className="text-slate-500">Kasa #04 • Terminal Alpha</p>
           </div>
+          <div className="flex gap-4">
+            <button className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-slate-400 border border-slate-800 rounded-xl font-medium hover:bg-slate-800 transition-colors">
+              <History className="w-4 h-4" /> Son İşlemler
+            </button>
+            <button className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-900/20 active:scale-95 transition-all">
+              <Plus className="w-4 h-4" /> Yeni Satış
+            </button>
+          </div>
+        </header>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((p) => (
-              <div
-                key={p.id}
-                onClick={() => addItem({ id: p.id, name: p.name, price: p.price, quantity: 1, image: p.img, type: 'product' })}
-                className="group bg-white dark:bg-slate-900 p-4 rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-transparent hover:border-blue-100 dark:hover:border-blue-900/30 cursor-pointer"
-              >
-                <div className="relative mb-4 rounded-2xl overflow-hidden aspect-square bg-slate-50 dark:bg-slate-950">
+        {/* Product Grid (Asymmetric Bento) */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {products.map((p, i) => (
+            <div
+              key={p.id}
+              onClick={() => addItem({ id: p.id, name: p.name, price: p.price, quantity: 1, image: p.img, type: 'product' })}
+              className={cn(
+                "group bg-slate-900/50 p-4 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-all cursor-pointer",
+                p.featured && "md:col-span-2 md:row-span-2 p-6"
+              )}
+            >
+              {p.img ? (
+                <div className={cn("bg-slate-950 rounded-xl mb-4 overflow-hidden relative", p.featured ? "h-64" : "aspect-square")}>
                   <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute top-2 right-2 bg-emerald-500 text-white text-[9px] font-black px-2 py-1 rounded-lg shadow-lg">
-                    {p.stock} IN STOCK
-                  </div>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">{p.cat}</span>
-                  <h3 className="font-bold text-slate-900 dark:text-white leading-tight line-clamp-2 min-h-[2.5rem]">{p.name}</h3>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xl font-black text-slate-900 dark:text-white tracking-tighter">${p.price}</span>
-                    <button className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
-                      <Plus className="w-5 h-5" />
-                    </button>
-                  </div>
+              ) : (
+                <div className="aspect-square bg-slate-950 rounded-xl mb-4 flex items-center justify-center text-slate-700">
+                  <Wrench className="w-12 h-12 opacity-20" />
+                </div>
+              )}
+
+              <div className="space-y-1">
+                <h3 className={cn("font-bold text-white", p.featured ? "text-xl" : "text-base")}>{p.name}</h3>
+                {p.desc && <p className="text-slate-500 text-sm mb-4 line-clamp-2">{p.desc}</p>}
+                <div className="flex justify-between items-center mt-auto">
+                  <span className={cn("font-black text-blue-500", p.featured ? "text-2xl" : "text-lg")}>₺{p.price.toFixed(2)}</span>
+                  <button className="w-10 h-10 rounded-full bg-blue-600/10 text-blue-500 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <Plus className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Right Side: Cart */}
-        <section className="w-[450px] bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-100 dark:border-slate-800 z-10">
-          {/* Customer Selection */}
-          <div className="p-8 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50">
-            <label className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Customer Profile</label>
-            <div className="relative group">
-              <UserSearch className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
-              <input
-                className="w-full pl-12 pr-12 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-2 focus:ring-blue-500/20 outline-none text-sm font-bold shadow-sm"
-                placeholder="Search or add customer..."
-              />
-              <button className="absolute right-4 top-1/2 -translate-y-1/2 text-blue-600 hover:scale-110 transition-transform">
-                <UserPlus className="w-4 h-4" />
-              </button>
             </div>
-          </div>
+          ))}
+        </div>
+      </main>
 
-          {/* Cart Items */}
-          <div className="flex-1 overflow-y-auto p-8 flex flex-col gap-6 custom-scrollbar">
-            <div className="flex justify-between items-end">
-              <h3 className="text-lg font-black tracking-tight text-slate-900 dark:text-white uppercase tracking-widest">Current Order</h3>
-              <span className="text-[10px] font-black text-blue-600 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg">{items.length} ITEMS</span>
+      {/* Cart Overlay / Drawer */}
+      {isCartOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] ml-64 mt-16"
+            onClick={() => setIsCartOpen(false)}
+          ></div>
+          <div className="fixed top-16 right-0 h-[calc(100vh-64px)] w-[440px] bg-slate-900 border-l border-slate-800 shadow-2xl z-[70] flex flex-col animate-in slide-in-from-right duration-300">
+            {/* Drawer Header */}
+            <div className="px-8 pt-10 pb-6">
+              <div className="flex justify-between items-center mb-8">
+                <div>
+                  <span className="text-[10px] font-bold tracking-[0.1em] text-blue-500 uppercase mb-1 block">Hızlı İşlem</span>
+                  <h2 className="text-2xl font-extrabold tracking-tight text-white">Sepet Özeti</h2>
+                </div>
+                <button
+                  onClick={() => setIsCartOpen(false)}
+                  className="w-10 h-10 rounded-full hover:bg-slate-800 transition-colors flex items-center justify-center text-slate-400 hover:text-white"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Search Bar */}
+              <div className="relative group">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-500 transition-colors w-5 h-5" />
+                <input
+                  className="w-full bg-slate-950 border-none focus:ring-1 focus:ring-blue-500 transition-all pl-12 pr-4 py-4 rounded-xl text-white placeholder:text-slate-600 shadow-inner"
+                  placeholder="Ürün barkodu veya ismi..."
+                  type="text"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            {/* Cart Items List */}
+            <div className="flex-1 overflow-y-auto px-8 space-y-6 custom-scrollbar py-4">
               {items.length === 0 ? (
-                <div className="flex-1 flex flex-col items-center justify-center py-20 opacity-20">
+                <div className="h-full flex flex-col items-center justify-center text-slate-600 opacity-50">
                   <Receipt className="w-20 h-20 mb-4" />
-                  <p className="font-black uppercase tracking-widest text-sm text-center">Cart is empty</p>
+                  <p className="font-bold uppercase tracking-widest text-sm">Sepet Boş</p>
                 </div>
               ) : items.map((item) => (
-                <div key={item.id} className="flex gap-4 p-4 rounded-3xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 group animate-in fade-in slide-in-from-right-4 duration-300">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 shrink-0">
+                <div key={item.id} className="group relative flex items-start gap-4 p-4 bg-slate-950 rounded-2xl transition-all border border-transparent hover:border-slate-800 hover:shadow-lg">
+                  <div className="w-16 h-16 rounded-xl bg-slate-900 flex-shrink-0 overflow-hidden border border-slate-800">
                     {item.image ? (
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-blue-500"><Wrench className="w-8 h-8" /></div>
+                      <div className="w-full h-full flex items-center justify-center text-blue-500/40">
+                        <Wrench className="w-8 h-8" />
+                      </div>
                     )}
                   </div>
-                  <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
+                  <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start">
-                      <h4 className="text-sm font-black text-slate-900 dark:text-white leading-tight truncate pr-2">{item.name}</h4>
-                      <button onClick={() => removeItem(item.id)} className="text-slate-300 hover:text-red-500 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                      <h4 className="font-bold text-white truncate pr-2">{item.name}</h4>
+                      <span className="font-bold text-white whitespace-nowrap">₺{(item.price * item.quantity).toFixed(2)}</span>
                     </div>
-                    <div className="flex justify-between items-end">
-                      <div className="flex items-center gap-4 bg-white dark:bg-slate-900 rounded-xl px-2 py-1 border border-slate-100 dark:border-slate-800 shadow-sm">
-                        <button onClick={() => updateQuantity(item.id, -1)} className="text-slate-400 hover:text-blue-600"><Minus className="w-3 h-3" /></button>
-                        <span className="text-sm font-black text-slate-900 dark:text-white">{item.quantity}</span>
-                        <button onClick={() => updateQuantity(item.id, 1)} className="text-slate-400 hover:text-blue-600"><Plus className="w-3 h-3" /></button>
+                    <p className="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">S/N: 9823-TX-102</p>
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="flex items-center bg-slate-900 rounded-lg p-1 gap-4 border border-slate-800">
+                        <button
+                          onClick={() => updateQuantity(item.id, -1)}
+                          className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-white transition-colors"
+                        >
+                          <Minus className="w-4 h-4" />
+                        </button>
+                        <span className="text-sm font-bold w-4 text-center text-white">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.id, 1)}
+                          className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-white transition-colors"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </button>
                       </div>
-                      <span className="font-black text-slate-900 dark:text-white text-lg tracking-tighter">${(item.price * item.quantity).toFixed(2)}</span>
+                      <button
+                        onClick={() => removeItem(item.id)}
+                        className="text-rose-500 hover:underline text-xs font-semibold"
+                      >
+                        Kaldır
+                      </button>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
 
-          {/* Checkout Footer */}
-          <div className="p-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
-            <div className="space-y-4 mb-8">
-              <div className="flex justify-between text-sm font-bold">
-                <span className="text-slate-400 uppercase tracking-widest">Subtotal</span>
-                <span className="text-slate-900 dark:text-white font-black">${total().toFixed(2)}</span>
-              </div>
-              <div className="flex justify-between text-sm font-bold">
-                <span className="text-slate-400 uppercase tracking-widest">Discounts</span>
-                <button className="text-blue-600 hover:underline flex items-center gap-1 uppercase tracking-tighter"><Tag className="w-3 h-3" /> Apply Code</button>
-              </div>
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
-                <span className="text-base font-black text-slate-900 dark:text-white uppercase tracking-widest">Total Amount</span>
-                <span className="text-3xl font-black text-slate-900 dark:text-white tracking-tighter">${total().toFixed(2)}</span>
-              </div>
+              {/* Discounts Area */}
+              {items.length > 0 && (
+                <div className="py-6 border-t border-slate-800 mt-4">
+                  <div className="flex justify-between items-center mb-4">
+                    <h5 className="text-sm font-bold tracking-tight text-white">Uygulanan İndirimler</h5>
+                    <button className="text-blue-500 text-xs font-bold uppercase tracking-wider hover:underline">+ Promo Ekle</button>
+                  </div>
+                  <div className="flex items-center justify-between bg-emerald-500/10 p-3 rounded-xl border border-emerald-500/20">
+                    <div className="flex items-center gap-2">
+                      <Tag className="text-emerald-500 w-4 h-4" />
+                      <span className="text-sm font-medium text-emerald-500">İlk Servis İndirimi</span>
+                    </div>
+                    <span className="font-bold text-emerald-500">-₺15.00</span>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Payment Methods */}
-            <div className="grid grid-cols-2 gap-3 mb-8">
-              {[
-                { label: "Cash", icon: Banknote },
-                { label: "Card", icon: CreditCard, active: true },
-                { label: "Transfer", icon: Receipt },
-                { label: "Split", icon: ArrowLeftRight },
-              ].map((m) => (
-                <button
-                  key={m.label}
-                  className={cn(
-                    "flex flex-col items-center justify-center py-4 rounded-2xl border-2 transition-all group active:scale-95",
-                    m.active ? "bg-blue-600 border-blue-600 text-white shadow-xl shadow-blue-500/20" : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-400 hover:border-blue-400"
-                  )}
-                >
-                  <m.icon className={cn("w-6 h-6 mb-2 transition-transform group-hover:scale-110", m.active ? "text-white" : "text-slate-400")} />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">{m.label}</span>
+            {/* Checkout Summary */}
+            <div className="bg-slate-950 p-8 rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] border-t border-slate-800">
+              <div className="space-y-3 mb-8">
+                <div className="flex justify-between text-slate-400">
+                  <span className="text-sm">Ara Toplam</span>
+                  <span className="font-medium text-white">₺{total().toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-slate-400">
+                  <span className="text-sm">Vergi (8.5%)</span>
+                  <span className="font-medium text-white">₺{(total() * 0.085).toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-white pt-4 border-t border-slate-800">
+                  <span className="text-lg font-bold">Toplam Tutar</span>
+                  <span className="text-2xl font-black text-blue-500">₺{(total() * 1.085 - 15).toFixed(2)}</span>
+                </div>
+              </div>
+
+              {/* Payment Methods */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <button className="flex flex-col items-center justify-center py-4 rounded-2xl bg-slate-900 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 transition-all active:scale-95">
+                  <Banknote className="mb-1 text-slate-400 w-6 h-6" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Nakit</span>
                 </button>
-              ))}
-            </div>
+                <button className="flex flex-col items-center justify-center py-4 rounded-2xl bg-slate-900 border border-slate-800 hover:bg-slate-800 hover:border-slate-700 transition-all active:scale-95">
+                  <CreditCard className="mb-1 text-slate-400 w-6 h-6" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Kredi Kartı</span>
+                </button>
+              </div>
 
-            <button className="w-full py-5 bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-3xl font-black uppercase tracking-[0.2em] shadow-2xl shadow-blue-500/30 active:scale-[0.98] transition-all flex items-center justify-center gap-4">
-              <Receipt className="w-6 h-6" />
-              Complete Transaction
-            </button>
+              {/* Complete Sale CTA */}
+              <button className="w-full bg-gradient-to-br from-blue-600 to-blue-700 text-white py-5 rounded-2xl font-black text-lg tracking-tight shadow-xl shadow-blue-900/40 hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+                Satışı Tamamla
+                <CheckCircle className="w-6 h-6" fill="currentColor" />
+              </button>
+            </div>
           </div>
-        </section>
-      </div>
+        </>
+      )}
+
+      {/* Floating Cart Button (if closed) */}
+      {!isCartOpen && (
+        <button
+          onClick={() => setIsCartOpen(true)}
+          className="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 animate-bounce"
+        >
+          <Receipt className="w-8 h-8" />
+          {items.length > 0 && (
+            <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-slate-950">
+              {items.length}
+            </span>
+          )}
+        </button>
+      )}
     </div>
   );
 }
