@@ -11,7 +11,7 @@ export function TopNavBar() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-blue-500 transition-colors" />
           <input
             className="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-blue-500/20 transition-all outline-none"
-            placeholder="Search imei, customer, or product..."
+            placeholder="IMEI, müşteri veya ürün ara..."
             type="text"
           />
         </div>
@@ -34,7 +34,7 @@ export function TopNavBar() {
         <div className="flex items-center gap-3 border-l pl-6 border-slate-200 dark:border-slate-800">
           <div className="text-right hidden md:block">
             <p className="text-sm font-bold text-slate-900 dark:text-white leading-none">Alex Rivet</p>
-            <p className="text-[10px] text-slate-500 uppercase tracking-tighter mt-1">Store Manager</p>
+            <p className="text-[10px] text-slate-500 uppercase tracking-tighter mt-1">Mağaza Müdürü</p>
           </div>
           <div className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-800 shadow-sm overflow-hidden relative">
             <Image

@@ -4,7 +4,6 @@ import {
   CheckCircle2,
   Users,
   TrendingUp,
-
   Filter,
   Download,
   MessageSquare,
@@ -16,10 +15,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const debtors = [
-  { name: "Mehmet Akarsu", phone: "+90 532 000 00 00", lastOp: "12 Oct 2023", desc: "iPhone Ekran Tamiri", amount: "₺4.500", status: "OVERDUE", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
-  { name: "Selin Yılmaz", phone: "+90 544 111 22 33", lastOp: "24 Oct 2023", desc: "MacBook Bakım", amount: "₺1.200", status: "PENDING", color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20" },
-  { name: "Burak Tan", phone: "+90 555 999 88 77", lastOp: "05 Nov 2023", desc: "Playstation Tamiri", amount: "₺3.750", status: "PARTIAL", color: "text-amber-600", bg: "bg-amber-50 dark:bg-amber-900/20" },
-  { name: "Canan Ergin", phone: "+90 531 222 33 44", lastOp: "10 Nov 2023", desc: "Yedek Parça Satış", amount: "₺12.400", status: "OVERDUE", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
+  { name: "Mehmet Akarsu", phone: "+90 532 000 00 00", lastOp: "12 Eki 2023", desc: "iPhone Ekran Tamiri", amount: "₺4.500", status: "GECİKMİŞ", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
+  { name: "Selin Yılmaz", phone: "+90 544 111 22 33", lastOp: "24 Eki 2023", desc: "MacBook Bakım", amount: "₺1.200", status: "BEKLEMEDE", color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20" },
+  { name: "Burak Tan", phone: "+90 555 999 88 77", lastOp: "05 Kas 2023", desc: "Playstation Tamiri", amount: "₺3.750", status: "KISMI", color: "text-amber-600", bg: "bg-amber-50 dark:bg-amber-900/20" },
+  { name: "Canan Ergin", phone: "+90 531 222 33 44", lastOp: "10 Kas 2023", desc: "Yedek Parça Satış", amount: "₺12.400", status: "GECİKMİŞ", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
 ];
 
 export default function DebtManagement() {
@@ -27,12 +26,12 @@ export default function DebtManagement() {
     <div className="p-8 space-y-8 bg-slate-50 dark:bg-slate-950 min-h-screen">
       <div className="flex items-end justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-1 block">Financials</span>
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Debt & Receivables</h1>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-1 block">Finansal Veriler</span>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Borç ve Alacak Yönetimi</h1>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20 transition-all active:scale-95">
-            <Plus className="w-4 h-4" /> Add Collection
+          <button className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+            <Plus className="w-4 h-4" /> Tahsilat Ekle
           </button>
         </div>
       </div>
@@ -40,10 +39,10 @@ export default function DebtManagement() {
       {/* Hero Stats Row */}
       <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
-          { label: "Total Receivables", val: "₺142.850", icon: CreditCard, color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20", trend: "+12%" },
-          { label: "Overdue Payments", val: "₺28.400", icon: AlertCircle, color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20", sub: "12 Customers overdue" },
-          { label: "Collected This Month", val: "₺54.200", icon: CheckCircle2, color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/20", progress: 72, sub: "Goal: ₺75k (72%)" },
-          { label: "Active Debtors", val: "84", icon: Users, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-800", sub: "Avg. Debt: ₺1,700" },
+          { label: "Toplam Alacaklar", val: "₺142.850", icon: CreditCard, color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20", trend: "+12%" },
+          { label: "Gecikmiş Ödemeler", val: "₺28.400", icon: AlertCircle, color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20", sub: "12 Müşteri gecikmede" },
+          { label: "Bu Ay Tahsil Edilen", val: "₺54.200", icon: CheckCircle2, color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/20", progress: 72, sub: "Hedef: ₺75k (72%)" },
+          { label: "Aktif Borçlular", val: "84", icon: Users, color: "text-slate-600", bg: "bg-slate-100 dark:bg-slate-800", sub: "Ort. Borç: ₺1,700" },
         ].map((s, i) => (
           <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col justify-between h-40 group hover:border-blue-500/50 transition-all">
             <div className="flex justify-between items-start">
@@ -74,13 +73,13 @@ export default function DebtManagement() {
         <div className="lg:col-span-1 bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
           <h3 className="text-sm font-black text-slate-900 dark:text-white mb-8 flex items-center gap-2 uppercase tracking-widest">
             <TrendingUp className="w-4 h-4 text-blue-500" />
-            Debt Aging Analysis
+            Borç Yaşlandırma Analizi
           </h3>
           <div className="space-y-6 flex-1">
             {[
-              { label: "0 - 30 Days", amount: "₺82,450", p: "w-[60%]", color: "bg-blue-500" },
-              { label: "31 - 60 Days", amount: "₺32,000", p: "w-[25%]", color: "bg-emerald-500" },
-              { label: "60+ Days", amount: "₺28,400", p: "w-[15%]", color: "bg-red-500", alert: true },
+              { label: "0 - 30 Gün", amount: "₺82,450", p: "w-[60%]", color: "bg-blue-500" },
+              { label: "31 - 60 Gün", amount: "₺32,000", p: "w-[25%]", color: "bg-emerald-500" },
+              { label: "60+ Gün", amount: "₺28,400", p: "w-[15%]", color: "bg-red-500", alert: true },
             ].map((a, i) => (
               <div key={i} className="space-y-2">
                 <div className="flex justify-between text-xs font-black uppercase tracking-tighter">
@@ -95,7 +94,7 @@ export default function DebtManagement() {
           </div>
           <div className="mt-8 p-4 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-2xl">
             <p className="text-xs text-slate-500 leading-relaxed font-medium italic">
-              &quot;Over 60-day debts account for 20% of total receivables. Immediate action is recommended.&quot;
+              &quot;60 günü geçen borçlar toplam alacakların %20'sini oluşturuyor. Acil aksiyon önerilir.&quot;
             </p>
           </div>
         </div>
@@ -103,13 +102,13 @@ export default function DebtManagement() {
         {/* Debtor List */}
         <div className="lg:col-span-2 space-y-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Customer Credit List</h3>
+            <h3 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Müşteri Alacak Listesi</h3>
             <div className="flex items-center gap-2">
               <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 text-xs font-black rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 transition-all shadow-sm">
-                <Filter className="w-4 h-4" /> Filter
+                <Filter className="w-4 h-4" /> Filtrele
               </button>
               <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 text-xs font-black rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 transition-all shadow-sm">
-                <Download className="w-4 h-4" /> Export
+                <Download className="w-4 h-4" /> Dışa Aktar
               </button>
             </div>
           </div>
@@ -119,11 +118,11 @@ export default function DebtManagement() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-slate-50 dark:bg-slate-950/50">
-                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Customer</th>
-                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Last Op</th>
-                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Total Debt</th>
-                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Status</th>
-                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Action</th>
+                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Müşteri</th>
+                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Son İşlem</th>
+                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Toplam Borç</th>
+                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Durum</th>
+                    <th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">İşlem</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -150,14 +149,14 @@ export default function DebtManagement() {
                         <span className="text-sm font-black text-slate-900 dark:text-white">{d.amount}</span>
                       </td>
                       <td className="px-8 py-6">
-                        <span className={cn("px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border shadow-inner", d.status === 'OVERDUE' ? 'bg-red-50 text-red-600 border-red-100 dark:bg-red-900/20 dark:border-red-800' : d.status === 'PENDING' ? 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:border-blue-800' : 'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/20 dark:border-amber-800')}>
+                        <span className={cn("px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border shadow-inner", d.status === 'GECİKMİŞ' ? 'bg-red-50 text-red-600 border-red-100 dark:bg-red-900/20 dark:border-red-800' : d.status === 'BEKLEMEDE' ? 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:border-blue-800' : 'bg-amber-50 text-amber-600 border-amber-100 dark:bg-amber-900/20 dark:border-amber-800')}>
                           {d.status}
                         </span>
                       </td>
                       <td className="px-8 py-6 text-right">
                         <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Collect"><CreditCardIcon className="w-4 h-4" /></button>
-                          <button className="p-2 text-slate-400 hover:text-emerald-500 transition-colors" title="Message"><MessageSquare className="w-4 h-4" /></button>
+                          <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="Tahsil Et"><CreditCardIcon className="w-4 h-4" /></button>
+                          <button className="p-2 text-slate-400 hover:text-emerald-500 transition-colors" title="Mesaj Gönder"><MessageSquare className="w-4 h-4" /></button>
                           <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"><MoreVertical className="w-4 h-4" /></button>
                         </div>
                       </td>
@@ -169,7 +168,7 @@ export default function DebtManagement() {
 
             {/* Pagination */}
             <div className="px-8 py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest">
-              <span>Showing 1-4 of 84 debtors</span>
+              <span>84 borçlu arasından 1-4 arası gösteriliyor</span>
               <div className="flex items-center gap-2">
                 <button className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-white transition-colors disabled:opacity-50" disabled><Calendar className="w-3.5 h-3.5" /></button>
                 <button className="w-8 h-8 rounded-lg bg-blue-600 text-white shadow-md">1</button>
@@ -183,9 +182,9 @@ export default function DebtManagement() {
 
       {/* Collection FAB */}
       <button className="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white rounded-3xl shadow-2xl shadow-blue-500/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all group z-50 border-4 border-white dark:border-slate-900">
-        <CreditCard className="w-8 h-8" />
+        <CreditCardIcon className="w-8 h-8" />
         <div className="absolute right-full mr-4 bg-slate-900 text-white text-[10px] font-black px-3 py-1.5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl">
-          QUICK COLLECTION
+          HIZLI TAHSİLAT
         </div>
       </button>
     </div>

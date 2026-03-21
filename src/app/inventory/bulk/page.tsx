@@ -25,21 +25,21 @@ export default function BulkStockEntry() {
       <section className="px-8 pt-8 pb-6 flex justify-between items-end">
         <div>
           <nav className="flex text-[10px] uppercase tracking-[0.2em] text-blue-500 font-bold mb-2">
-            <span>Inventory</span>
+            <span>Envanter</span>
             <span className="mx-2 text-slate-600">/</span>
-            <span className="text-slate-400">Bulk Stock Entry</span>
+            <span className="text-slate-400">Toplu Stok Girişi</span>
           </nav>
-          <h2 className="text-3xl font-extrabold tracking-tighter text-white">Bulk Stock Entry</h2>
-          <p className="text-slate-400 text-sm mt-1">Quickly update your inventory and include new parts into the system.</p>
+          <h2 className="text-3xl font-extrabold tracking-tighter text-white">Toplu Stok Girişi</h2>
+          <p className="text-slate-400 text-sm mt-1">Envanterinizi hızla güncelleyin ve yeni parçaları sisteme dahil edin.</p>
         </div>
         <div className="flex items-center gap-3">
           <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 rounded-xl hover:bg-slate-800 transition-colors group">
             <FileUp className="w-4 h-4 group-hover:text-blue-400" />
-            Import CSV
+            CSV İçe Aktar
           </button>
           <button className="flex items-center gap-2 px-4 py-2 text-xs font-bold bg-slate-900 border border-slate-800 text-slate-300 rounded-xl hover:bg-slate-800 transition-colors group text-red-400 hover:text-red-300">
             <Trash2 className="w-4 h-4" />
-            Clear All
+            Tümünü Temizle
           </button>
         </div>
       </section>
@@ -51,15 +51,15 @@ export default function BulkStockEntry() {
             <thead className="bg-slate-900 sticky top-0 z-10 border-b border-slate-800">
               <tr>
                 <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 w-12 text-center">#</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 min-w-[160px]">Barcode</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 min-w-[240px]">Product Name</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Category</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Compatibility</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Shelf</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 w-24 text-center">Qty</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Buy Price</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Sale Price</th>
-                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Profit %</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 min-w-[160px]">Barkod</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 min-w-[240px]">Ürün Adı</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Kategori</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Uyumluluk</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Raf</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 w-24 text-center">Adet</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Alış Fiyatı</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500">Satış Fiyatı</th>
+                <th className="px-4 py-4 text-[10px] font-black uppercase tracking-widest text-slate-500 text-right">Kar %</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/50">
@@ -96,15 +96,15 @@ export default function BulkStockEntry() {
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2 relative group">
                     <Scan className="w-4 h-4 text-blue-500 animate-pulse" />
-                    <input className="bg-slate-800/50 border border-blue-500/30 rounded-lg px-2 py-1 focus:ring-1 focus:ring-blue-500 text-xs text-slate-200 w-full placeholder-slate-600 transition-all outline-none" placeholder="Scan barcode..." type="text" />
+                    <input className="bg-slate-800/50 border border-blue-500/30 rounded-lg px-2 py-1 focus:ring-1 focus:ring-blue-500 text-xs text-slate-200 w-full placeholder-slate-600 transition-all outline-none" placeholder="Barkod okutun..." type="text" />
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <input className="bg-transparent border-none focus:ring-0 text-sm text-slate-500 p-0 w-full italic" placeholder="Enter product name..." type="text" />
+                  <input className="bg-transparent border-none focus:ring-0 text-sm text-slate-500 p-0 w-full italic" placeholder="Ürün adı girin..." type="text" />
                 </td>
                 <td className="px-4 py-3" colSpan={7}>
                   <button className="text-xs font-black text-slate-500 hover:text-blue-500 flex items-center gap-2 uppercase tracking-tighter transition-colors">
-                    <Plus className="w-4 h-4" /> Add Row
+                    <Plus className="w-4 h-4" /> Satır Ekle
                   </button>
                 </td>
               </tr>
@@ -115,9 +115,9 @@ export default function BulkStockEntry() {
         {/* Floating Metrics */}
         <div className="mt-8 flex gap-6">
           {[
-            { label: "Pending Items", value: "35", unit: "Units", icon: Database, color: "text-blue-500", bg: "bg-blue-500/10" },
-            { label: "Total Cost", value: "₺25.750,00", icon: CreditCard, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-            { label: "Est. Profit", value: "₺14.250,00", icon: LineChart, color: "text-amber-500", bg: "bg-amber-500/10" },
+            { label: "Bekleyen Ürünler", value: "35", unit: "Adet", icon: Database, color: "text-blue-500", bg: "bg-blue-500/10" },
+            { label: "Toplam Maliyet", value: "₺25.750,00", icon: CreditCard, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+            { label: "Tahmini Kar", value: "₺14.250,00", icon: LineChart, color: "text-amber-500", bg: "bg-amber-500/10" },
           ].map((m, i) => (
             <div key={i} className="flex items-center gap-4 bg-slate-900 border border-slate-800 p-6 rounded-2xl flex-1 shadow-sm">
               <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center", m.bg)}>
@@ -137,29 +137,29 @@ export default function BulkStockEntry() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-8">
             <div className="flex flex-col">
-              <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">System Status</span>
+              <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Sistem Durumu</span>
               <div className="flex items-center gap-2 mt-0.5">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-                <span className="text-xs font-bold text-slate-300">Scanner Online: COM4</span>
+                <span className="text-xs font-bold text-slate-300">Okuyucu Aktif: COM4</span>
               </div>
             </div>
             <div className="h-8 w-px bg-slate-800"></div>
             <div className="flex items-center gap-8">
               <div>
-                <p className="text-[10px] font-black uppercase text-slate-500">Errors</p>
+                <p className="text-[10px] font-black uppercase text-slate-500">Hatalar</p>
                 <p className="text-sm font-bold text-red-400">0</p>
               </div>
               <div>
-                <p className="text-[10px] font-black uppercase text-slate-500">Validated</p>
-                <p className="text-sm font-bold text-slate-200">2 New Records</p>
+                <p className="text-[10px] font-black uppercase text-slate-500">Doğrulandı</p>
+                <p className="text-sm font-bold text-slate-200">2 Yeni Kayıt</p>
               </div>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button className="px-6 py-2.5 text-xs font-black text-slate-500 hover:text-white transition-colors uppercase tracking-[0.2em]">Cancel</button>
+            <button className="px-6 py-2.5 text-xs font-black text-slate-500 hover:text-white transition-colors uppercase tracking-[0.2em]">Vazgeç</button>
             <button className="bg-blue-600 hover:bg-blue-500 text-white font-black px-10 py-3 rounded-2xl shadow-xl shadow-blue-900/30 transition-all active:scale-95 flex items-center gap-3 text-sm">
               <Save className="w-5 h-5" />
-              Save to Inventory
+              Envantere Kaydet
             </button>
           </div>
         </div>

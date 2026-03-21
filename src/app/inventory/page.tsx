@@ -45,15 +45,15 @@ export default function InventoryManagement() {
     <div className="p-8 space-y-8 bg-slate-50 dark:bg-slate-950 min-h-screen">
       <div className="flex items-end justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-1 block">Inventory</span>
-          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Stock & Product Management</h1>
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-1 block">Envanter</span>
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Stok ve Ürün Yönetimi</h1>
         </div>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 rounded-xl font-semibold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm">
-            <FileUp className="w-4 h-4" /> Export CSV
+            <FileUp className="w-4 h-4" /> CSV Dışa Aktar
           </button>
           <button className="flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20 transition-all active:scale-95">
-            <Plus className="w-4 h-4" /> Add New Product
+            <Plus className="w-4 h-4" /> Yeni Ürün Ekle
           </button>
         </div>
       </div>
@@ -61,10 +61,10 @@ export default function InventoryManagement() {
       {/* Summary Bento Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
-          { label: "Total Stock Value", value: "₺482,500.00", trend: "+12%", color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20" },
-          { label: "Out of Stock", value: "14 Items", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
-          { label: "Critical Warnings", value: "32 Items", color: "text-amber-600", bg: "bg-amber-50 dark:bg-amber-900/20" },
-          { label: "Weekly Arrivals", value: "128 Units", color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/20" },
+          { label: "Toplam Stok Değeri", value: "₺482.500,00", trend: "+12%", color: "text-blue-600", bg: "bg-blue-50 dark:bg-blue-900/20" },
+          { label: "Stokta Yok", value: "14 Kalem", color: "text-red-600", bg: "bg-red-50 dark:bg-red-900/20" },
+          { label: "Kritik Uyarılar", value: "32 Kalem", color: "text-amber-600", bg: "bg-amber-50 dark:bg-amber-900/20" },
+          { label: "Haftalık Giriş", value: "128 Adet", color: "text-emerald-600", bg: "bg-emerald-50 dark:bg-emerald-900/20" },
         ].map((stat, i) => (
           <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800">
             <div className="flex justify-between items-start mb-4">
@@ -83,26 +83,26 @@ export default function InventoryManagement() {
       <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-4">
         <div className="flex items-center gap-2 text-slate-400 mr-2">
           <Filter className="w-4 h-4" />
-          <span className="text-sm font-bold uppercase tracking-wider">Filter:</span>
+          <span className="text-sm font-bold uppercase tracking-wider">Filtrele:</span>
         </div>
         <select className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 transition-all outline-none">
-          <option>Category</option>
-          <option>Screens</option>
-          <option>Batteries</option>
+          <option>Kategori</option>
+          <option>Ekranlar</option>
+          <option>Bataryalar</option>
         </select>
         <select className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 transition-all outline-none">
-          <option>Brand</option>
+          <option>Marka</option>
           <option>Apple</option>
           <option>Samsung</option>
         </select>
         <select className="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-500/20 transition-all outline-none">
-          <option>Stock Status</option>
-          <option>In Stock</option>
-          <option>Critical</option>
+          <option>Stok Durumu</option>
+          <option>Stokta</option>
+          <option>Kritik</option>
         </select>
         <div className="ml-auto flex items-center gap-4">
-          <button className="text-xs font-bold text-blue-600 hover:underline px-2 uppercase tracking-widest">Clear All</button>
-          <button className="bg-slate-900 dark:bg-blue-600 text-white px-6 py-2 rounded-xl text-sm font-bold shadow-sm active:scale-95 transition-all">Apply Filters</button>
+          <button className="text-xs font-bold text-blue-600 hover:underline px-2 uppercase tracking-widest">Temizle</button>
+          <button className="bg-slate-900 dark:bg-blue-600 text-white px-6 py-2 rounded-xl text-sm font-bold shadow-sm active:scale-95 transition-all">Filtreleri Uygula</button>
         </div>
       </div>
 
@@ -111,13 +111,13 @@ export default function InventoryManagement() {
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50 dark:bg-slate-950/50">
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Product Info</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Compatibility</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 text-center">Stock</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Location</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Buy Price</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Sale Price</th>
-              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 text-right">Actions</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Ürün Bilgisi</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Uyumluluk</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 text-center">Stok</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Konum</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Alış Fiyatı</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800">Satış Fiyatı</th>
+              <th className="px-6 py-4 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 text-right">İşlemler</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -146,7 +146,7 @@ export default function InventoryManagement() {
                     <span className={cn(
                       "text-sm font-black",
                       item.status === 'critical' ? "text-red-600" : item.status === 'warning' ? "text-amber-600" : "text-emerald-600"
-                    )}>{item.stock} Units</span>
+                    )}>{item.stock} Adet</span>
                     <div className="w-20 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner">
                       <div className={cn(
                         "h-full rounded-full transition-all",
@@ -174,7 +174,7 @@ export default function InventoryManagement() {
 
         {/* Table Footer */}
         <div className="px-6 py-4 bg-slate-50 dark:bg-slate-950/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-          <p className="text-sm text-slate-500 font-medium">Showing 1-3 of 142 products</p>
+          <p className="text-sm text-slate-500 font-medium">142 ürün arasından 1-3 arası gösteriliyor</p>
           <div className="flex items-center gap-1">
             <button className="p-2 rounded-xl hover:bg-white dark:hover:bg-slate-800 transition-colors text-slate-400"><ChevronLeft className="w-4 h-4" /></button>
             <button className="w-8 h-8 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-blue-200">1</button>

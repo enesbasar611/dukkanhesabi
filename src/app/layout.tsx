@@ -7,8 +7,8 @@ import { TopNavBar } from "@/components/layout/TopNavBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tech Atelier | Technical Service Management",
-  description: "Advanced Management Panel for Technical Ateliers",
+  title: "Tech Atelier | Teknik Servis Yönetimi",
+  description: "Teknik Atölyeler için Gelişmiş Yönetim Paneli",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
+    <html lang="tr" className="light">
       <body className={`${inter.className} bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased`}>
         <SideNavBar />
         <main className="ml-64 min-h-screen flex flex-col">
