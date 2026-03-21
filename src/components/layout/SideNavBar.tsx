@@ -13,10 +13,14 @@ import {
   BarChart3,
   BadgeCheck,
   Settings,
-
   PlusCircle,
   LogOut,
-  Warehouse
+  Warehouse,
+  Receipt,
+  MessageSquare,
+  Activity,
+  BellRing,
+  Smartphone
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,8 +33,12 @@ const navigation = [
   { name: "Customers", href: "/customers", icon: Users },
   { name: "Debts", href: "/customers/debts", icon: CreditCard },
   { name: "Finance", href: "/finance", icon: History },
+  { name: "Profit Analysis", href: "/finance/profit-analysis", icon: CreditCard },
   { name: "Reports", href: "/reports", icon: BarChart3 },
+  { name: "Sales Report", href: "/reports/sales", icon: Receipt },
+  { name: "Campaigns", href: "/crm/campaigns", icon: MessageSquare },
   { name: "Staff", href: "/staff", icon: BadgeCheck },
+  { name: "System Health", href: "/system/health", icon: Activity },
 ];
 
 export function SideNavBar() {
@@ -45,7 +53,7 @@ export function SideNavBar() {
 
       <nav className="flex-1 px-4 space-y-1 overflow-y-auto custom-scrollbar pt-4">
         {navigation.map((item) => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
           return (
             <Link
               key={item.name}
@@ -74,6 +82,20 @@ export function SideNavBar() {
         </Link>
 
         <div className="space-y-1">
+          <Link href="/settings/messaging" className={cn(
+            "flex items-center gap-3 px-3 py-2 rounded-lg transition-all",
+            pathname.startsWith("/settings/messaging") ? "text-blue-400 bg-blue-600/10" : "text-slate-400 hover:text-white"
+          )}>
+            <Smartphone className="w-5 h-5" />
+            <span className="text-sm">Messaging Gateway</span>
+          </Link>
+          <Link href="/settings/automations" className={cn(
+            "flex items-center gap-3 px-3 py-2 rounded-lg transition-all",
+            pathname.startsWith("/settings/automations") ? "text-blue-400 bg-blue-600/10" : "text-slate-400 hover:text-white"
+          )}>
+            <BellRing className="w-5 h-5" />
+            <span className="text-sm">Automations</span>
+          </Link>
           <Link href="/settings" className="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-white transition-colors">
             <Settings className="w-5 h-5" />
             <span className="text-sm">Settings</span>
