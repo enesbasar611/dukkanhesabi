@@ -60,6 +60,51 @@ export default function SystemHealth() {
           title="API Bağlantıları"
           status="Sağlıklı"
           detail="12/12 Uç Nokta Aktif"
+      {/* Visual Background Accents */}
+      <div className="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="fixed bottom-0 left-64 -z-10 w-[300px] h-[300px] bg-emerald-600/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+      {/* Editorial Header */}
+      <section>
+        <p className="text-blue-500 font-black tracking-[0.2em] text-[10px] uppercase mb-1">Architecture Monitoring</p>
+        <h2 className="text-4xl font-black tracking-tight text-white uppercase leading-none">System Health <span className="text-slate-600">&amp;</span> Status</h2>
+      </section>
+
+      {/* Bento Grid: Status Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {/* POS Integration */}
+        <StatusCard
+          icon={Activity}
+          title="POS Integration"
+          status="Online"
+          detail="Latency: 42ms"
+          variant="emerald"
+          pulse
+        />
+        {/* SMS Gateway */}
+        <StatusCard
+          icon={MessageSquare}
+          title="SMS Gateway"
+          status="Low Balance"
+          detail="Credits: 142 remaining"
+          variant="amber"
+          warning
+        />
+        {/* Cloud Backup */}
+        <StatusCard
+          icon={CloudSync}
+          title="Cloud Backup"
+          status="Syncing"
+          detail="Progress: 88%"
+          variant="blue"
+          progress={88}
+        />
+        {/* API Connections */}
+        <StatusCard
+          icon={MonitorCheck}
+          title="API Connections"
+          status="Healthy"
+          detail="12/12 Endpoints Active"
           variant="emerald"
           segments={[40, 40, 40, 100]}
         />
@@ -82,6 +127,23 @@ export default function SystemHealth() {
 
           <div className="relative h-56 flex items-end gap-1.5 px-2 z-10">
             {/* Simüle Edilmiş Grafik Çubukları */}
+      {/* Real-time Graphs */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* System Uptime Graph */}
+        <div className="lg:col-span-2 bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] p-10 rounded-[2.5rem] relative overflow-hidden group">
+          <div className="flex justify-between items-end mb-10 relative z-10">
+            <div>
+              <h4 className="text-xl font-black text-white uppercase tracking-tight">System Uptime</h4>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-1">Measured across all regional clusters</p>
+            </div>
+            <div className="text-right">
+              <span className="text-4xl font-black text-emerald-400 tracking-tighter">99.98%</span>
+              <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mt-1">Last 30 Days</p>
+            </div>
+          </div>
+
+          <div className="relative h-56 flex items-end gap-1.5 px-2 relative z-10">
+            {/* Simulated Graph Bars */}
             {[95, 98, 92, 99, 97, 85, 99, 100, 96, 98, 99, 94, 99, 98, 96, 100, 99, 97].map((h, i) => (
               <div
                 key={i}
@@ -90,6 +152,7 @@ export default function SystemHealth() {
               >
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-slate-900 text-[10px] font-black px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap shadow-xl">
                   %{h} • Gün {i+1}
+                  {h}% • Day {i+1}
                 </div>
               </div>
             ))}
@@ -105,6 +168,15 @@ export default function SystemHealth() {
         {/* Entegrasyon Yanıt Süreleri */}
         <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] p-10 rounded-[2.5rem] flex flex-col">
           <h4 className="text-xl font-black text-white uppercase tracking-tight mb-10">Yanıt Gecikmesi</h4>
+            <span>MAY 01</span>
+            <span>MAY 15</span>
+            <span>MAY 30</span>
+          </div>
+        </div>
+
+        {/* Integration Response Times */}
+        <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] p-10 rounded-[2.5rem] flex flex-col">
+          <h4 className="text-xl font-black text-white uppercase tracking-tight mb-10">Response Latency</h4>
           <div className="space-y-8 flex-1">
             <LatencyBar label="POS" val="120ms" percent={40} />
             <LatencyBar label="Auth" val="65ms" percent={25} />
@@ -116,12 +188,14 @@ export default function SystemHealth() {
             <Info className="w-5 h-5 text-blue-400 shrink-0" />
             <p className="text-[11px] text-blue-200/70 leading-relaxed font-bold uppercase tracking-tight">
               Ağ trafiği şu anda bu oturum için nominal parametreler dahilindedir.
+              Network traffic is currently within nominal parameters for this session.
             </p>
           </div>
         </div>
       </div>
 
       {/* Bakım Günlüğü */}
+      {/* Maintenance Log */}
       <section className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] rounded-[2.5rem] overflow-hidden shadow-2xl">
         <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/5">
           <div className="flex items-center gap-4">
@@ -132,6 +206,10 @@ export default function SystemHealth() {
           </div>
           <button className="text-[10px] font-black text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-[0.2em] border border-blue-400/20 px-4 py-2 rounded-xl hover:bg-blue-400/5">
             CSV Olarak Dışa Aktar
+            <h4 className="text-xl font-black text-white uppercase tracking-tight">Maintenance &amp; Event Log</h4>
+          </div>
+          <button className="text-[10px] font-black text-blue-400 hover:text-blue-300 transition-colors uppercase tracking-[0.2em] border border-blue-400/20 px-4 py-2 rounded-xl hover:bg-blue-400/5">
+            Export CSV
           </button>
         </div>
 
@@ -155,6 +233,24 @@ export default function SystemHealth() {
             time="18:45"
             title="SMS Ağ Geçidi Uyarısı"
             desc="Bakiye eşik değerinin altına düştü (₺50,00). Otomatik uyarı gönderildi."
+            date="May 28"
+            time="14:20"
+            title="Security Patch Applied"
+            desc="System kernel updated to v2.4.1. No downtime required."
+            id="#LOG-8921"
+          />
+          <LogItem
+            date="May 27"
+            time="03:15"
+            title="Database Optimization"
+            desc="Automated vacuum and index rebuild completed successfully."
+            id="#LOG-8845"
+          />
+          <LogItem
+            date="May 25"
+            time="18:45"
+            title="SMS Gateway Warning"
+            desc="Balance dropped below threshold ($50.00). Automated alert sent."
             id="#LOG-8712"
             warning
           />
@@ -163,6 +259,7 @@ export default function SystemHealth() {
         <div className="p-6 bg-white/5 text-center">
           <button className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 hover:text-slate-300 transition-all">
             Tüm Olayları Görüntüle
+            View All Events
           </button>
         </div>
       </section>
