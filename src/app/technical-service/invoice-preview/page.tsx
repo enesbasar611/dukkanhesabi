@@ -19,6 +19,10 @@ export default function InvoicePreview() {
 
   return (
     <div className="flex h-[calc(100vh-64px)] overflow-hidden bg-slate-950">
+      {/* Sol Çalışma Alanı: Yapılandırma */}
+      <div className="w-80 bg-slate-900 border-r border-slate-800 p-6 flex flex-col gap-8 overflow-y-auto custom-scrollbar">
+        <div>
+          <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4">Çıktı Formatı</h3>
       {/* Left Workspace: Configuration */}
       <div className="w-80 bg-slate-900 border-r border-slate-800 p-6 flex flex-col gap-8 overflow-y-auto custom-scrollbar">
         <div>
@@ -35,6 +39,8 @@ export default function InvoicePreview() {
             >
               <FileText className="w-6 h-6" />
               <div>
+                <p className="text-sm font-black leading-none uppercase tracking-tight">A4 Fatura</p>
+                <p className="text-[10px] opacity-60 mt-1 uppercase font-bold tracking-widest">Standart 210x297mm</p>
                 <p className="text-sm font-black leading-none uppercase tracking-tight">A4 Invoice</p>
                 <p className="text-[10px] opacity-60 mt-1 uppercase font-bold tracking-widest">Standard 210x297mm</p>
               </div>
@@ -50,6 +56,8 @@ export default function InvoicePreview() {
             >
               <Receipt className="w-6 h-6" />
               <div>
+                <p className="text-sm font-black leading-none uppercase tracking-tight">Termal Fiş</p>
+                <p className="text-[10px] opacity-60 mt-1 uppercase font-bold tracking-widest">POS 80mm Rulo</p>
                 <p className="text-sm font-black leading-none uppercase tracking-tight">Thermal Receipt</p>
                 <p className="text-[10px] opacity-60 mt-1 uppercase font-bold tracking-widest">POS 80mm Roll</p>
               </div>
@@ -58,6 +66,12 @@ export default function InvoicePreview() {
         </div>
 
         <div>
+          <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4">Belge Ayarları</h3>
+          <div className="space-y-4">
+            <Toggle label="Birim Fiyatları Göster" enabled={showUnitPrices} setEnabled={setShowUnitPrices} />
+            <Toggle label="Ayrıntılı İndirimler" enabled={itemizedDiscounts} setEnabled={setItemizedDiscounts} />
+            <Toggle label="Mağaza Şart ve Koşulları" enabled={storeTerms} setEnabled={setStoreTerms} />
+            <Toggle label="Dijital QR Kod" enabled={digitalQR} setEnabled={setDigitalQR} />
           <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] mb-4">Document Settings</h3>
           <div className="space-y-4">
             <Toggle label="Show Unit Prices" enabled={showUnitPrices} setEnabled={setShowUnitPrices} />
@@ -70,6 +84,11 @@ export default function InvoicePreview() {
         <div className="mt-auto pt-6 border-t border-slate-800 space-y-3">
           <button className="w-full flex items-center justify-center gap-2 bg-white text-slate-900 py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-slate-200 transition-all shadow-xl active:scale-95">
             <Printer className="w-4 h-4" />
+            Belgeyi Yazdır
+          </button>
+          <button className="w-full flex items-center justify-center gap-2 bg-slate-800 text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-slate-700 transition-all border border-slate-700 active:scale-95">
+            <Download className="w-4 h-4" />
+            PDF Olarak Kaydet
             Print Document
           </button>
           <button className="w-full flex items-center justify-center gap-2 bg-slate-800 text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-slate-700 transition-all border border-slate-700 active:scale-95">
@@ -79,6 +98,14 @@ export default function InvoicePreview() {
         </div>
       </div>
 
+      {/* Sağ Çalışma Alanı: Önizleme Tuvali */}
+      <div className="flex-1 bg-slate-950 relative overflow-hidden flex items-center justify-center p-12 overflow-y-auto custom-scrollbar">
+        {/* Arka Plan Noktaları */}
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+
+        {/* A4 Fatura Önizleme Konteynırı */}
+        <div className="bg-white text-slate-900 w-[600px] min-h-[840px] shadow-2xl shadow-black p-12 flex flex-col relative rounded-sm transform scale-90 origin-top">
+          {/* Filigran / Vurgular */}
       {/* Right Workspace: Preview Canvas */}
       <div className="flex-1 bg-slate-950 relative overflow-hidden flex items-center justify-center p-12 overflow-y-auto custom-scrollbar">
         {/* Background Dots */}
@@ -95,6 +122,14 @@ export default function InvoicePreview() {
                 <LayoutTemplate className="text-white w-7 h-7" />
               </div>
               <div>
+                <h2 className="text-xl font-black tracking-tighter uppercase leading-none">Teknik Atelier</h2>
+                <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] mt-1">Hassas Servis Merkezi</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <h1 className="text-5xl font-black text-slate-100 uppercase tracking-tighter leading-none mb-4">Fatura</h1>
+              <div className="space-y-0.5">
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Belge No.</p>
                 <h2 className="text-xl font-black tracking-tighter uppercase leading-none">Tech Atelier</h2>
                 <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] mt-1">Precision Service Hub</p>
               </div>
@@ -110,6 +145,21 @@ export default function InvoicePreview() {
 
           <div className="grid grid-cols-2 gap-12 mb-12 relative z-10">
             <div>
+              <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-3">Hizmet Sağlayıcı</p>
+              <div className="text-xs leading-relaxed font-bold text-slate-600">
+                <p className="text-slate-900 font-black">Teknik Atelier Genel Merkezi</p>
+                <p>42 Endüstri Yolu, Kat 8</p>
+                <p>İstanbul, Türkiye 34000</p>
+                <p>iletisim@tecnikatelier.com.tr</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-3">Fatura Adresi</p>
+              <div className="text-xs leading-relaxed font-bold text-slate-600">
+                <p className="text-slate-900 font-black">Aether Dynamics A.Ş.</p>
+                <p>Alıcı: Selin Yılmaz</p>
+                <p>909 İnovasyon Bulvarı</p>
+                <p>Ankara, Türkiye 06000</p>
               <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-3">Service Provider</p>
               <div className="text-xs leading-relaxed font-bold text-slate-600">
                 <p className="text-slate-900 font-black">Tech Atelier Headquarters</p>
@@ -133,6 +183,10 @@ export default function InvoicePreview() {
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b-2 border-slate-900">
+                  <th className="py-4 text-left text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Açıklama</th>
+                  <th className="py-4 text-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Adet</th>
+                  <th className="py-4 text-right text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Birim Fiyat</th>
+                  <th className="py-4 text-right text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Toplam</th>
                   <th className="py-4 text-left text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Description</th>
                   <th className="py-4 text-center text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Qty</th>
                   <th className="py-4 text-right text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Rate</th>
@@ -142,6 +196,30 @@ export default function InvoicePreview() {
               <tbody className="text-xs font-bold divide-y divide-slate-100">
                 <tr className="group">
                   <td className="py-5">
+                    <p className="font-black text-slate-900">Hassas Torna Bakımı</p>
+                    <p className="text-[10px] text-slate-500 mt-1 italic font-medium tracking-tight">Seviye 3 sensör kalibrasyonu ve mekanik hizalama</p>
+                  </td>
+                  <td className="py-5 text-center font-mono">1</td>
+                  <td className="py-5 text-right font-mono">₺450,00</td>
+                  <td className="py-5 text-right font-black tracking-tighter text-sm">₺450,00</td>
+                </tr>
+                <tr className="group">
+                  <td className="py-5">
+                    <p className="font-black text-slate-900">Yüksek Akışlı Tungsten Nozullar</p>
+                    <p className="text-[10px] text-slate-500 mt-1 italic font-medium tracking-tight">Parça #XT-90-2 (0.4mm varyantı)</p>
+                  </td>
+                  <td className="py-5 text-center font-mono">3</td>
+                  <td className="py-5 text-right font-mono">₺85,00</td>
+                  <td className="py-5 text-right font-black tracking-tighter text-sm">₺255,00</td>
+                </tr>
+                <tr className="group">
+                  <td className="py-5">
+                    <p className="font-black text-slate-900">Sistem Donanım Yazılımı Güncellemesi</p>
+                    <p className="text-[10px] text-slate-500 mt-1 italic font-medium tracking-tight">Bulut senkronizasyon entegrasyonu ile OS v4.2 Dağıtımı</p>
+                  </td>
+                  <td className="py-5 text-center font-mono">1</td>
+                  <td className="py-5 text-right font-mono">₺120,00</td>
+                  <td className="py-5 text-right font-black tracking-tighter text-sm">₺120,00</td>
                     <p className="font-black text-slate-900">Precision Lathe Maintenance</p>
                     <p className="text-[10px] text-slate-500 mt-1 italic font-medium tracking-tight">Level 3 sensor calibration and mechanical alignment</p>
                   </td>
@@ -189,12 +267,28 @@ export default function InvoicePreview() {
                 </div>
               )}
               <div className="max-w-[180px]">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900">Dijital Takip</p>
+                <p className="text-[9px] leading-relaxed text-slate-500 font-bold mt-1 uppercase tracking-tight">Servis geçmişini ve dijital bakım günlüklerini görüntülemek için tarayın.</p>
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900">Digital Tracking</p>
                 <p className="text-[9px] leading-relaxed text-slate-500 font-bold mt-1 uppercase tracking-tight">Scan to view service history and digital maintenance logs.</p>
               </div>
             </div>
             <div className="w-52 space-y-2.5">
               <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <span>Ara Toplam</span>
+                <span className="text-slate-900">₺825,00</span>
+              </div>
+              <div className="flex justify-between text-xs font-black text-blue-600 uppercase tracking-widest">
+                <span>İndirim (5%)</span>
+                <span>-₺41,25</span>
+              </div>
+              <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <span>KDV (20%)</span>
+                <span className="text-slate-900">₺156,75</span>
+              </div>
+              <div className="flex justify-between pt-4 border-t-2 border-slate-900 mt-2">
+                <span className="text-sm font-black uppercase tracking-[0.1em]">Toplam Borç</span>
+                <span className="text-xl font-black text-slate-900 tracking-tighter">₺940,50</span>
                 <span>Subtotal</span>
                 <span className="text-slate-900">$825.00</span>
               </div>
@@ -214,6 +308,7 @@ export default function InvoicePreview() {
           </footer>
 
           <div className="mt-12 text-[8px] font-black text-slate-300 text-center uppercase tracking-[0.5em]">
+            Tech Atelier OS Tarafından Desteklenmektedir • Dijital Hassas Mühendislik
             Powered by Tech Atelier OS • Digital Precision Engineering
           </div>
         </div>
